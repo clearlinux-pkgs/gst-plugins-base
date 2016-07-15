@@ -1,0 +1,21 @@
+# This file contains pkgconfig build requirements that get picked up
+# but are undesirable. One entry per line, no whitespace.
+AC_CHECK_LIB(vorbisidec
+IVORBIS_CFLAGS
+IVORBIS_LIBS
+Qt5Gui
+Qt5Widgets
+cdparanoia-3
+opus
+then
+vorbisidec
+theoradec
+gtk+-quartz-3.0
+if
+no
+libvisual-0.4
+test
+vorbisidec)
+xv)
+x11)
+theoraenc
