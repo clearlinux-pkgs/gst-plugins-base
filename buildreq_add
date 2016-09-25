@@ -3,3 +3,4 @@
 gstreamer-dev
 gobject-introspection-dev
 gobject-introspection
+valgrind
