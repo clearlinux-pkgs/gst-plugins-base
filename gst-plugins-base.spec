@@ -4,7 +4,7 @@
 #
 Name     : gst-plugins-base
 Version  : 1.8.3
-Release  : 3
+Release  : 4
 URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.8.3.tar.xz
 Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.8.3.tar.xz
 Summary  : GStreamer streaming media framework plug-ins
@@ -104,6 +104,13 @@ locales components for the gst-plugins-base package.
 
 %build
 export LANG=C
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
+export FCFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
+export FFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
+export CXXFLAGS="$CXXFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
