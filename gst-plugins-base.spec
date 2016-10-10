@@ -4,7 +4,7 @@
 #
 Name     : gst-plugins-base
 Version  : 1.9.90
-Release  : 5
+Release  : 6
 URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.9.90.tar.xz
 Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.9.90.tar.xz
 Summary  : GStreamer streaming media framework plug-ins
