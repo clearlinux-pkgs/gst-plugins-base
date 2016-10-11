@@ -4,7 +4,7 @@
 #
 Name     : gst-plugins-base
 Version  : 1.8.3
-Release  : 7
+Release  : 8
 URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.8.3.tar.xz
 Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.8.3.tar.xz
 Summary  : GStreamer streaming media framework plug-ins
@@ -30,6 +30,7 @@ BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(gtk+-x11-3.0)
 BuildRequires : pkgconfig(ogg)
 BuildRequires : pkgconfig(pango)
+BuildRequires : pkgconfig(theoradec)
 BuildRequires : pkgconfig(vorbis)
 BuildRequires : pkgconfig(x11)
 BuildRequires : pkgconfig(xext)
@@ -111,7 +112,7 @@ export CFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interpositio
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
-%configure --disable-static
+%configure --disable-static --enable-theora
 make V=1  %{?_smp_mflags}
 
 %check
@@ -487,6 +488,7 @@ rm -rf %{buildroot}
 /usr/lib64/gstreamer-1.0/libgstplayback.so
 /usr/lib64/gstreamer-1.0/libgstsubparse.so
 /usr/lib64/gstreamer-1.0/libgsttcp.so
+/usr/lib64/gstreamer-1.0/libgsttheora.so
 /usr/lib64/gstreamer-1.0/libgsttypefindfunctions.so
 /usr/lib64/gstreamer-1.0/libgstvideoconvert.so
 /usr/lib64/gstreamer-1.0/libgstvideorate.so
