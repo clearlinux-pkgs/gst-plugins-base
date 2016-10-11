@@ -9,7 +9,6 @@ cdparanoia-3
 opus
 then
 vorbisidec
-theoradec
 gtk+-quartz-3.0
 if
 no
@@ -18,4 +17,3 @@ test
 vorbisidec)
 xv)
 x11)
-theoraenc
