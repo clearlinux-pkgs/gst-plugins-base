@@ -6,7 +6,7 @@
 #
 Name     : gst-plugins-base
 Version  : 1.10.3
-Release  : 11
+Release  : 12
 URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.10.3.tar.xz
 Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.10.3.tar.xz
 Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.10.3.tar.xz.asc
@@ -14,8 +14,8 @@ Summary  : GStreamer streaming media framework plug-ins
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: gst-plugins-base-bin
-Requires: gst-plugins-base-lib
 Requires: gst-plugins-base-data
+Requires: gst-plugins-base-lib
 Requires: gst-plugins-base-doc
 Requires: gst-plugins-base-locales
 BuildRequires : docbook-xml
@@ -108,7 +108,7 @@ locales components for the gst-plugins-base package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1486055273
+export SOURCE_DATE_EPOCH=1491319558
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -127,7 +127,7 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1486055273
+export SOURCE_DATE_EPOCH=1491319558
 rm -rf %{buildroot}
 %make_install
 %find_lang gst-plugins-base-1.0
@@ -143,6 +143,17 @@ rm -rf %{buildroot}
 
 %files data
 %defattr(-,root,root,-)
+/usr/lib64/girepository-1.0/GstAllocators-1.0.typelib
+/usr/lib64/girepository-1.0/GstApp-1.0.typelib
+/usr/lib64/girepository-1.0/GstAudio-1.0.typelib
+/usr/lib64/girepository-1.0/GstFft-1.0.typelib
+/usr/lib64/girepository-1.0/GstPbutils-1.0.typelib
+/usr/lib64/girepository-1.0/GstRtp-1.0.typelib
+/usr/lib64/girepository-1.0/GstRtsp-1.0.typelib
+/usr/lib64/girepository-1.0/GstSdp-1.0.typelib
+/usr/lib64/girepository-1.0/GstTag-1.0.typelib
+/usr/lib64/girepository-1.0/GstVideo-1.0.typelib
+/usr/share/gir-1.0/*.gir
 /usr/share/gst-plugins-base/1.0/license-translations.dict
 
 %files dev
@@ -255,16 +266,6 @@ rm -rf %{buildroot}
 /usr/include/gstreamer-1.0/gst/video/videodirection.h
 /usr/include/gstreamer-1.0/gst/video/videoorientation.h
 /usr/include/gstreamer-1.0/gst/video/videooverlay.h
-/usr/lib64/girepository-1.0/GstAllocators-1.0.typelib
-/usr/lib64/girepository-1.0/GstApp-1.0.typelib
-/usr/lib64/girepository-1.0/GstAudio-1.0.typelib
-/usr/lib64/girepository-1.0/GstFft-1.0.typelib
-/usr/lib64/girepository-1.0/GstPbutils-1.0.typelib
-/usr/lib64/girepository-1.0/GstRtp-1.0.typelib
-/usr/lib64/girepository-1.0/GstRtsp-1.0.typelib
-/usr/lib64/girepository-1.0/GstSdp-1.0.typelib
-/usr/lib64/girepository-1.0/GstTag-1.0.typelib
-/usr/lib64/girepository-1.0/GstVideo-1.0.typelib
 /usr/lib64/libgstallocators-1.0.so
 /usr/lib64/libgstapp-1.0.so
 /usr/lib64/libgstaudio-1.0.so
@@ -288,7 +289,6 @@ rm -rf %{buildroot}
 /usr/lib64/pkgconfig/gstreamer-sdp-1.0.pc
 /usr/lib64/pkgconfig/gstreamer-tag-1.0.pc
 /usr/lib64/pkgconfig/gstreamer-video-1.0.pc
-/usr/share/gir-1.0/*.gir
 
 %files doc
 %defattr(-,root,root,-)
