@@ -4,3 +4,8 @@ gstreamer-dev
 gobject-introspection-dev
 gobject-introspection
 valgrind
+opus-dev
+libvorbis-dev
+libogg-dev
+orc
+orc-dev
