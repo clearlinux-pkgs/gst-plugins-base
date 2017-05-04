@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x0668CC1486C2D7B5 (slomo@debian.org)
 #
 Name     : gst-plugins-base
-Version  : 1.10.3
-Release  : 13
-URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.10.3.tar.xz
-Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.10.3.tar.xz
-Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.10.3.tar.xz.asc
-Summary  : GStreamer streaming media framework plug-ins
+Version  : 1.12.0
+Release  : 14
+URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.0.tar.xz
+Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.0.tar.xz
+Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.0.tar.xz.asc
+Summary  : Streaming media framework, base plugins libraries
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: gst-plugins-base-bin
@@ -19,14 +19,12 @@ Requires: gst-plugins-base-lib
 Requires: gst-plugins-base-doc
 Requires: gst-plugins-base-locales
 BuildRequires : docbook-xml
-BuildRequires : gettext
 BuildRequires : gobject-introspection
 BuildRequires : gobject-introspection-dev
 BuildRequires : gstreamer-dev
 BuildRequires : gtk-doc
 BuildRequires : gtk-doc-dev
 BuildRequires : libxslt-bin
-BuildRequires : perl(XML::Parser)
 BuildRequires : pkgconfig(alsa)
 BuildRequires : pkgconfig(gio-unix-2.0)
 BuildRequires : pkgconfig(gtk+-3.0)
@@ -42,12 +40,10 @@ BuildRequires : pkgconfig(zlib)
 BuildRequires : valgrind
 
 %description
-GStreamer is a streaming media framework, based on graphs of filters which
-operate on media data. Applications using this library can do anything
-from real-time sound processing to playing videos, and just about anything
-else media-related.  Its plugin-based architecture means that new data
-types or processing capabilities can be added simply by installing new
-plug-ins.
+GStreamer 1.11.x development series
+WHAT IT IS
+----------
+This is GStreamer, a framework for streaming media.
 
 %package bin
 Summary: bin components for the gst-plugins-base package.
@@ -104,11 +100,14 @@ locales components for the gst-plugins-base package.
 
 
 %prep
-%setup -q -n gst-plugins-base-1.10.3
+%setup -q -n gst-plugins-base-1.12.0
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1491319558
+export SOURCE_DATE_EPOCH=1493909225
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -123,11 +122,11 @@ make V=1  %{?_smp_mflags}
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1491319558
+export SOURCE_DATE_EPOCH=1493909225
 rm -rf %{buildroot}
 %make_install
 %find_lang gst-plugins-base-1.0
@@ -161,6 +160,7 @@ rm -rf %{buildroot}
 /usr/include/gstreamer-1.0/gst/allocators/allocators.h
 /usr/include/gstreamer-1.0/gst/allocators/gstdmabuf.h
 /usr/include/gstreamer-1.0/gst/allocators/gstfdmemory.h
+/usr/include/gstreamer-1.0/gst/app/app-enumtypes.h
 /usr/include/gstreamer-1.0/gst/app/app.h
 /usr/include/gstreamer-1.0/gst/app/gstappsink.h
 /usr/include/gstreamer-1.0/gst/app/gstappsrc.h
@@ -233,6 +233,7 @@ rm -rf %{buildroot}
 /usr/include/gstreamer-1.0/gst/sdp/sdp.h
 /usr/include/gstreamer-1.0/gst/tag/gsttagdemux.h
 /usr/include/gstreamer-1.0/gst/tag/gsttagmux.h
+/usr/include/gstreamer-1.0/gst/tag/tag-enumtypes.h
 /usr/include/gstreamer-1.0/gst/tag/tag.h
 /usr/include/gstreamer-1.0/gst/tag/xmpwriter.h
 /usr/include/gstreamer-1.0/gst/video/colorbalance.h
@@ -293,91 +294,91 @@ rm -rf %{buildroot}
 %files doc
 %defattr(-,root,root,-)
 %doc /usr/share/man/man1/*
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioBaseSink.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioBaseSrc.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioCdSrc.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioClock.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioDecoder.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioEncoder.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioFilter.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioRingBuffer.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioSink.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioSrc.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstColorBalance.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstColorBalanceChannel.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstDiscoverer.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstEncodingProfile.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstNavigation.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstRTPBaseAudioPayload.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstRTPBaseDepayload.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstRTPBasePayload.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstStreamVolume.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstVideoDirection.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstVideoFilter.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstVideoOrientation.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstVideoOverlay.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstVideoSink.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/annotation-glossary.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/api-index-deprecated.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/api-index-full.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/compiling.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-1.0.devhelp2
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Audio-channels.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Codec-utilities.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Descriptions.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstAudio-IEC61937.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstAudio.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstAudioConverter.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstAudioDownmixMeta.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstAudioQuantize.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstExiftag.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstFFT.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstFFTF32.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstFFTF64.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstFFTS16.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstFFTS32.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstMIKEYMessage.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTCPBuffer.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTPBuffer.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTPPayloadInfo.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTSPConnection.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTSPExtension.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTSPMessage.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTSPRange.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTSPTimeRange.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTSPUrl.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRtphdrext.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRtspdefs.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstSDPMessage.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstTagDemux.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstTagMux.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstTagXmpWriter.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoAlignment.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoChroma.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoDecoder.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoDither.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoEncoder.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoOverlayRectangle.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoPool.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoResampler.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoScaler.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVorbisTag.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstXmptag.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-ID3-tag-utils.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-ISO-639-lang-mappings.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Install-plugins.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Licenses.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Missing-plugins.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Pbutils.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Riff-utilities.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Tags.html
+/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Version.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-appsink.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-appsrc.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-dmabuf.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-encoding-profile.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-fdmemory.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudio.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudiobasesink.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudiobasesrc.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudiocdsrc.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudiochannels.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudioclock.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudiodecoder.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudioencoder.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudiofilter.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudioiec61937.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudiometa.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudioringbuffer.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudiosink.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstaudiosrc.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstcolorbalance.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstcolorbalancechannel.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstdiscoverer.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstfft.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstfftf32.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstfftf64.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstffts16.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstffts32.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstmikey.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstnavigation.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstpbutils.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstpbutilscodecutils.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstpbutilsdescriptions.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstpbutilsinstallplugins.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstpbutilsmissingplugins.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstpluginsbaseversion.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstriff.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtcpbuffer.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtpbaseaudiopayload.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtpbasedepayload.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtpbasepayload.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtpbuffer.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtphdrext.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtppayloads.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtspconnection.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtspdefs.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtspextension.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtspmessage.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtsprange.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtsptransport.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstrtspurl.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstsdpmessage.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gststreamvolume.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gsttag.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gsttagdemux.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gsttagexif.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gsttagid3.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gsttaglanguagecodes.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gsttaglicenses.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gsttagmux.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gsttagvorbis.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gsttagxmp.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gsttagxmpwriter.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideo.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideoaffinetransformationmeta.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideodirection.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideofilter.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideometa.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideoorientation.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideooverlay.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideooverlaycomposition.html
-/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideosink.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideoutils.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-allocators.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-app.html
@@ -455,6 +456,7 @@ rm -rf %{buildroot}
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-opus.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-pango.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-playback.html
+/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-rawparse.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-subparse.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-tcp.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-theora.html
@@ -467,6 +469,8 @@ rm -rf %{buildroot}
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-vorbis.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-ximagesink.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-xvimagesink.html
+/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-rawaudioparse.html
+/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-rawvideoparse.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-socketsrc.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-ssaparse.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-streamsynchronizer.html
@@ -482,6 +486,8 @@ rm -rf %{buildroot}
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-theoraenc.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-theoraparse.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-timeoverlay.html
+/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-unalignedaudioparse.html
+/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-unalignedvideoparse.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-uridecodebin.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-urisourcebin.html
 /usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-videoconvert.html
@@ -514,11 +520,13 @@ rm -rf %{buildroot}
 /usr/lib64/gstreamer-1.0/libgstaudiorate.so
 /usr/lib64/gstreamer-1.0/libgstaudioresample.so
 /usr/lib64/gstreamer-1.0/libgstaudiotestsrc.so
-/usr/lib64/gstreamer-1.0/libgstencodebin.so
+/usr/lib64/gstreamer-1.0/libgstencoding.so
 /usr/lib64/gstreamer-1.0/libgstgio.so
 /usr/lib64/gstreamer-1.0/libgstogg.so
 /usr/lib64/gstreamer-1.0/libgstpango.so
+/usr/lib64/gstreamer-1.0/libgstpbtypes.so
 /usr/lib64/gstreamer-1.0/libgstplayback.so
+/usr/lib64/gstreamer-1.0/libgstrawparse.so
 /usr/lib64/gstreamer-1.0/libgstsubparse.so
 /usr/lib64/gstreamer-1.0/libgsttcp.so
 /usr/lib64/gstreamer-1.0/libgsttheora.so
@@ -532,27 +540,27 @@ rm -rf %{buildroot}
 /usr/lib64/gstreamer-1.0/libgstximagesink.so
 /usr/lib64/gstreamer-1.0/libgstxvimagesink.so
 /usr/lib64/libgstallocators-1.0.so.0
-/usr/lib64/libgstallocators-1.0.so.0.1003.0
+/usr/lib64/libgstallocators-1.0.so.0.1200.0
 /usr/lib64/libgstapp-1.0.so.0
-/usr/lib64/libgstapp-1.0.so.0.1003.0
+/usr/lib64/libgstapp-1.0.so.0.1200.0
 /usr/lib64/libgstaudio-1.0.so.0
-/usr/lib64/libgstaudio-1.0.so.0.1003.0
+/usr/lib64/libgstaudio-1.0.so.0.1200.0
 /usr/lib64/libgstfft-1.0.so.0
-/usr/lib64/libgstfft-1.0.so.0.1003.0
+/usr/lib64/libgstfft-1.0.so.0.1200.0
 /usr/lib64/libgstpbutils-1.0.so.0
-/usr/lib64/libgstpbutils-1.0.so.0.1003.0
+/usr/lib64/libgstpbutils-1.0.so.0.1200.0
 /usr/lib64/libgstriff-1.0.so.0
-/usr/lib64/libgstriff-1.0.so.0.1003.0
+/usr/lib64/libgstriff-1.0.so.0.1200.0
 /usr/lib64/libgstrtp-1.0.so.0
-/usr/lib64/libgstrtp-1.0.so.0.1003.0
+/usr/lib64/libgstrtp-1.0.so.0.1200.0
 /usr/lib64/libgstrtsp-1.0.so.0
-/usr/lib64/libgstrtsp-1.0.so.0.1003.0
+/usr/lib64/libgstrtsp-1.0.so.0.1200.0
 /usr/lib64/libgstsdp-1.0.so.0
-/usr/lib64/libgstsdp-1.0.so.0.1003.0
+/usr/lib64/libgstsdp-1.0.so.0.1200.0
 /usr/lib64/libgsttag-1.0.so.0
-/usr/lib64/libgsttag-1.0.so.0.1003.0
+/usr/lib64/libgsttag-1.0.so.0.1200.0
 /usr/lib64/libgstvideo-1.0.so.0
-/usr/lib64/libgstvideo-1.0.so.0.1003.0
+/usr/lib64/libgstvideo-1.0.so.0.1200.0
 
 %files locales -f gst-plugins-base-1.0.lang
 %defattr(-,root,root,-)
