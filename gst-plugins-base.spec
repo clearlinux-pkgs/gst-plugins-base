@@ -6,7 +6,7 @@
 #
 Name     : gst-plugins-base
 Version  : 1.12.0
-Release  : 15
+Release  : 16
 URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.0.tar.xz
 Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.0.tar.xz
 Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.0.tar.xz.asc
@@ -28,6 +28,8 @@ BuildRequires : libogg-dev
 BuildRequires : libvorbis-dev
 BuildRequires : libxslt-bin
 BuildRequires : opus-dev
+BuildRequires : orc
+BuildRequires : orc-dev
 BuildRequires : pkgconfig(alsa)
 BuildRequires : pkgconfig(gio-unix-2.0)
 BuildRequires : pkgconfig(gtk+-3.0)
@@ -110,7 +112,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1493909999
+export SOURCE_DATE_EPOCH=1493910984
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -129,7 +131,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1493909999
+export SOURCE_DATE_EPOCH=1493910984
 rm -rf %{buildroot}
 %make_install
 %find_lang gst-plugins-base-1.0
