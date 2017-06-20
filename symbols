@@ -427,6 +427,7 @@ libgstpbutils-1.0.so.0:gst_encoding_video_profile_new
 libgstpbutils-1.0.so.0:gst_encoding_video_profile_set_pass
 libgstpbutils-1.0.so.0:gst_encoding_video_profile_set_variableframerate
 libgstpbutils-1.0.so.0:gst_install_plugins_async
+libgstpbutils-1.0.so.0:gst_install_plugins_context_copy
 libgstpbutils-1.0.so.0:gst_install_plugins_context_free
 libgstpbutils-1.0.so.0:gst_install_plugins_context_get_type
 libgstpbutils-1.0.so.0:gst_install_plugins_context_new
@@ -628,6 +629,8 @@ libgstrtp-1.0.so.0:gst_rtp_profile_get_type
 libgstrtsp-1.0.so.0:gst_rtsp_auth_credential_get_type
 libgstrtsp-1.0.so.0:gst_rtsp_auth_credentials_free
 libgstrtsp-1.0.so.0:gst_rtsp_auth_method_get_type
+libgstrtsp-1.0.so.0:gst_rtsp_auth_param_copy
+libgstrtsp-1.0.so.0:gst_rtsp_auth_param_free
 libgstrtsp-1.0.so.0:gst_rtsp_auth_param_get_type
 libgstrtsp-1.0.so.0:gst_rtsp_connection_accept
 libgstrtsp-1.0.so.0:gst_rtsp_connection_clear_auth_params

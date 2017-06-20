@@ -1,0 +1,16 @@
+Configure miss: VALGRIND
+Configure miss: whether to build plugin documentation
+Configure miss: whether gcc is Clang
+Configure miss: whether more special flags are required for pthreads
+Configure miss: whether __i386__ is declared
+Configure miss: winsock2.h
+Configure miss: ARM NEON support in current arch/CFLAGS
+Configure miss: GTK_QUARTZ
+Configure miss: QT
+Configure miss: whether to build static plugins or not
+Configure miss: whether iso-codes are available on this system
+Configure miss: CDPARANOIA
+Configure miss: cdda_open in -lcdda_interface
+Configure miss: IVORBIS
+Configure miss: vorbis_block_init in -lvorbisidec
+Configure miss: LIBVISUAL
