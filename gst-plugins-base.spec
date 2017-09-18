@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x0668CC1486C2D7B5 (slomo@debian.org)
 #
 Name     : gst-plugins-base
-Version  : 1.12.2
-Release  : 18
-URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.2.tar.xz
-Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.2.tar.xz
-Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.2.tar.xz.asc
+Version  : 1.12.3
+Release  : 19
+URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.3.tar.xz
+Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.3.tar.xz
+Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.3.tar.xz.asc
 Summary  : Streaming media framework, base plugins libraries
 Group    : Development/Tools
 License  : GPL-2.0
@@ -27,6 +27,8 @@ BuildRequires : gtk-doc-dev
 BuildRequires : libogg-dev
 BuildRequires : libvorbis-dev
 BuildRequires : libxslt-bin
+BuildRequires : meson
+BuildRequires : ninja
 BuildRequires : opus-dev
 BuildRequires : orc
 BuildRequires : orc-dev
@@ -36,16 +38,20 @@ BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(gtk+-x11-3.0)
 BuildRequires : pkgconfig(ogg)
 BuildRequires : pkgconfig(pango)
+BuildRequires : pkgconfig(pangocairo)
 BuildRequires : pkgconfig(theoradec)
+BuildRequires : pkgconfig(theoraenc)
 BuildRequires : pkgconfig(vorbis)
+BuildRequires : pkgconfig(vorbisenc)
 BuildRequires : pkgconfig(x11)
 BuildRequires : pkgconfig(xext)
 BuildRequires : pkgconfig(xv)
 BuildRequires : pkgconfig(zlib)
+BuildRequires : python3
 BuildRequires : valgrind
 
 %description
-GStreamer 1.11.x development series
+GStreamer 1.12.x stable series
 WHAT IT IS
 ----------
 This is GStreamer, a framework for streaming media.
@@ -105,21 +111,21 @@ locales components for the gst-plugins-base package.
 
 
 %prep
-%setup -q -n gst-plugins-base-1.12.2
+%setup -q -n gst-plugins-base-1.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1500043045
+export SOURCE_DATE_EPOCH=1505776792
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 %configure --disable-static --enable-theora
 make V=1  %{?_smp_mflags}
 
@@ -131,7 +137,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1500043045
+export SOURCE_DATE_EPOCH=1505776792
 rm -rf %{buildroot}
 %make_install
 %find_lang gst-plugins-base-1.0
@@ -546,27 +552,27 @@ rm -rf %{buildroot}
 /usr/lib64/gstreamer-1.0/libgstximagesink.so
 /usr/lib64/gstreamer-1.0/libgstxvimagesink.so
 /usr/lib64/libgstallocators-1.0.so.0
-/usr/lib64/libgstallocators-1.0.so.0.1202.0
+/usr/lib64/libgstallocators-1.0.so.0.1203.0
 /usr/lib64/libgstapp-1.0.so.0
-/usr/lib64/libgstapp-1.0.so.0.1202.0
+/usr/lib64/libgstapp-1.0.so.0.1203.0
 /usr/lib64/libgstaudio-1.0.so.0
-/usr/lib64/libgstaudio-1.0.so.0.1202.0
+/usr/lib64/libgstaudio-1.0.so.0.1203.0
 /usr/lib64/libgstfft-1.0.so.0
-/usr/lib64/libgstfft-1.0.so.0.1202.0
+/usr/lib64/libgstfft-1.0.so.0.1203.0
 /usr/lib64/libgstpbutils-1.0.so.0
-/usr/lib64/libgstpbutils-1.0.so.0.1202.0
+/usr/lib64/libgstpbutils-1.0.so.0.1203.0
 /usr/lib64/libgstriff-1.0.so.0
-/usr/lib64/libgstriff-1.0.so.0.1202.0
+/usr/lib64/libgstriff-1.0.so.0.1203.0
 /usr/lib64/libgstrtp-1.0.so.0
-/usr/lib64/libgstrtp-1.0.so.0.1202.0
+/usr/lib64/libgstrtp-1.0.so.0.1203.0
 /usr/lib64/libgstrtsp-1.0.so.0
-/usr/lib64/libgstrtsp-1.0.so.0.1202.0
+/usr/lib64/libgstrtsp-1.0.so.0.1203.0
 /usr/lib64/libgstsdp-1.0.so.0
-/usr/lib64/libgstsdp-1.0.so.0.1202.0
+/usr/lib64/libgstsdp-1.0.so.0.1203.0
 /usr/lib64/libgsttag-1.0.so.0
-/usr/lib64/libgsttag-1.0.so.0.1202.0
+/usr/lib64/libgsttag-1.0.so.0.1203.0
 /usr/lib64/libgstvideo-1.0.so.0
-/usr/lib64/libgstvideo-1.0.so.0.1202.0
+/usr/lib64/libgstvideo-1.0.so.0.1203.0
 
 %files locales -f gst-plugins-base-1.0.lang
 %defattr(-,root,root,-)
