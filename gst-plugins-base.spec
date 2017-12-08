@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x0668CC1486C2D7B5 (slomo@debian.org)
 #
 Name     : gst-plugins-base
-Version  : 1.12.3
-Release  : 19
-URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.3.tar.xz
-Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.3.tar.xz
-Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.3.tar.xz.asc
+Version  : 1.12.4
+Release  : 20
+URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.4.tar.xz
+Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.4.tar.xz
+Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.12.4.tar.xz.asc
 Summary  : Streaming media framework, base plugins libraries
 Group    : Development/Tools
 License  : GPL-2.0
@@ -111,14 +111,14 @@ locales components for the gst-plugins-base package.
 
 
 %prep
-%setup -q -n gst-plugins-base-1.12.3
+%setup -q -n gst-plugins-base-1.12.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1505776792
+export SOURCE_DATE_EPOCH=1512738630
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -127,7 +127,7 @@ export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 %configure --disable-static --enable-theora
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %check
 export LANG=C
@@ -137,7 +137,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1505776792
+export SOURCE_DATE_EPOCH=1512738630
 rm -rf %{buildroot}
 %make_install
 %find_lang gst-plugins-base-1.0
@@ -552,27 +552,27 @@ rm -rf %{buildroot}
 /usr/lib64/gstreamer-1.0/libgstximagesink.so
 /usr/lib64/gstreamer-1.0/libgstxvimagesink.so
 /usr/lib64/libgstallocators-1.0.so.0
-/usr/lib64/libgstallocators-1.0.so.0.1203.0
+/usr/lib64/libgstallocators-1.0.so.0.1204.0
 /usr/lib64/libgstapp-1.0.so.0
-/usr/lib64/libgstapp-1.0.so.0.1203.0
+/usr/lib64/libgstapp-1.0.so.0.1204.0
 /usr/lib64/libgstaudio-1.0.so.0
-/usr/lib64/libgstaudio-1.0.so.0.1203.0
+/usr/lib64/libgstaudio-1.0.so.0.1204.0
 /usr/lib64/libgstfft-1.0.so.0
-/usr/lib64/libgstfft-1.0.so.0.1203.0
+/usr/lib64/libgstfft-1.0.so.0.1204.0
 /usr/lib64/libgstpbutils-1.0.so.0
-/usr/lib64/libgstpbutils-1.0.so.0.1203.0
+/usr/lib64/libgstpbutils-1.0.so.0.1204.0
 /usr/lib64/libgstriff-1.0.so.0
-/usr/lib64/libgstriff-1.0.so.0.1203.0
+/usr/lib64/libgstriff-1.0.so.0.1204.0
 /usr/lib64/libgstrtp-1.0.so.0
-/usr/lib64/libgstrtp-1.0.so.0.1203.0
+/usr/lib64/libgstrtp-1.0.so.0.1204.0
 /usr/lib64/libgstrtsp-1.0.so.0
-/usr/lib64/libgstrtsp-1.0.so.0.1203.0
+/usr/lib64/libgstrtsp-1.0.so.0.1204.0
 /usr/lib64/libgstsdp-1.0.so.0
-/usr/lib64/libgstsdp-1.0.so.0.1203.0
+/usr/lib64/libgstsdp-1.0.so.0.1204.0
 /usr/lib64/libgsttag-1.0.so.0
-/usr/lib64/libgsttag-1.0.so.0.1203.0
+/usr/lib64/libgsttag-1.0.so.0.1204.0
 /usr/lib64/libgstvideo-1.0.so.0
-/usr/lib64/libgstvideo-1.0.so.0.1203.0
+/usr/lib64/libgstvideo-1.0.so.0.1204.0
 
 %files locales -f gst-plugins-base-1.0.lang
 %defattr(-,root,root,-)
