@@ -6,7 +6,7 @@
 #
 Name     : gst-plugins-base
 Version  : 1.14.0
-Release  : 23
+Release  : 24
 URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.0.tar.xz
 Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.0.tar.xz
 Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.0.tar.xz.asc
