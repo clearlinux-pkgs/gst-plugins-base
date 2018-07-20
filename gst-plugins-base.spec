@@ -5,19 +5,21 @@
 # Source0 file verified with key 0x5D2EEE6F6F349D7C (tim@centricular.com)
 #
 Name     : gst-plugins-base
-Version  : 1.14.1
-Release  : 25
-URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.1.tar.xz
-Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.1.tar.xz
-Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.1.tar.xz.asc
+Version  : 1.14.2
+Release  : 26
+URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.2.tar.xz
+Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.2.tar.xz
+Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.2.tar.xz.asc
 Summary  : RTSP base classes and helper functions
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0
 Requires: gst-plugins-base-bin
 Requires: gst-plugins-base-data
 Requires: gst-plugins-base-lib
+Requires: gst-plugins-base-license
 Requires: gst-plugins-base-locales
 Requires: gst-plugins-base-man
+BuildRequires : buildreq-meson
 BuildRequires : clutter-dev
 BuildRequires : docbook-xml
 BuildRequires : glu-dev
@@ -31,8 +33,6 @@ BuildRequires : libjpeg-turbo-dev
 BuildRequires : libogg-dev
 BuildRequires : libvorbis-dev
 BuildRequires : libxslt-bin
-BuildRequires : meson
-BuildRequires : ninja
 BuildRequires : opus-dev
 BuildRequires : orc
 BuildRequires : orc-dev
@@ -54,7 +54,6 @@ BuildRequires : pkgconfig(x11)
 BuildRequires : pkgconfig(xext)
 BuildRequires : pkgconfig(xv)
 BuildRequires : pkgconfig(zlib)
-BuildRequires : python3
 BuildRequires : valgrind
 
 %description
@@ -67,6 +66,7 @@ This is GStreamer, a framework for streaming media.
 Summary: bin components for the gst-plugins-base package.
 Group: Binaries
 Requires: gst-plugins-base-data
+Requires: gst-plugins-base-license
 Requires: gst-plugins-base-man
 
 %description bin
@@ -106,9 +106,18 @@ doc components for the gst-plugins-base package.
 Summary: lib components for the gst-plugins-base package.
 Group: Libraries
 Requires: gst-plugins-base-data
+Requires: gst-plugins-base-license
 
 %description lib
 lib components for the gst-plugins-base package.
+
+
+%package license
+Summary: license components for the gst-plugins-base package.
+Group: Default
+
+%description license
+license components for the gst-plugins-base package.
 
 
 %package locales
@@ -128,14 +137,14 @@ man components for the gst-plugins-base package.
 
 
 %prep
-%setup -q -n gst-plugins-base-1.14.1
+%setup -q -n gst-plugins-base-1.14.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1526695687
+export SOURCE_DATE_EPOCH=1532090939
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -154,8 +163,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1526695687
+export SOURCE_DATE_EPOCH=1532090939
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/gst-plugins-base
+cp COPYING %{buildroot}/usr/share/doc/gst-plugins-base/COPYING
+cp COPYING.LIB %{buildroot}/usr/share/doc/gst-plugins-base/COPYING.LIB
+cp gst-libs/gst/tag/licenses.c %{buildroot}/usr/share/doc/gst-plugins-base/gst-libs_gst_tag_licenses.c
 %make_install
 %find_lang gst-plugins-base-1.0
 
@@ -391,7 +404,7 @@ rm -rf %{buildroot}
 /usr/lib64/pkgconfig/gstreamer-video-1.0.pc
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioAggregator.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioBaseSink.html
 /usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioBaseSrc.html
@@ -730,29 +743,35 @@ rm -rf %{buildroot}
 /usr/lib64/gstreamer-1.0/libgstximagesink.so
 /usr/lib64/gstreamer-1.0/libgstxvimagesink.so
 /usr/lib64/libgstallocators-1.0.so.0
-/usr/lib64/libgstallocators-1.0.so.0.1401.0
+/usr/lib64/libgstallocators-1.0.so.0.1402.0
 /usr/lib64/libgstapp-1.0.so.0
-/usr/lib64/libgstapp-1.0.so.0.1401.0
+/usr/lib64/libgstapp-1.0.so.0.1402.0
 /usr/lib64/libgstaudio-1.0.so.0
-/usr/lib64/libgstaudio-1.0.so.0.1401.0
+/usr/lib64/libgstaudio-1.0.so.0.1402.0
 /usr/lib64/libgstfft-1.0.so.0
-/usr/lib64/libgstfft-1.0.so.0.1401.0
+/usr/lib64/libgstfft-1.0.so.0.1402.0
 /usr/lib64/libgstgl-1.0.so.0
-/usr/lib64/libgstgl-1.0.so.0.1401.0
+/usr/lib64/libgstgl-1.0.so.0.1402.0
 /usr/lib64/libgstpbutils-1.0.so.0
-/usr/lib64/libgstpbutils-1.0.so.0.1401.0
+/usr/lib64/libgstpbutils-1.0.so.0.1402.0
 /usr/lib64/libgstriff-1.0.so.0
-/usr/lib64/libgstriff-1.0.so.0.1401.0
+/usr/lib64/libgstriff-1.0.so.0.1402.0
 /usr/lib64/libgstrtp-1.0.so.0
-/usr/lib64/libgstrtp-1.0.so.0.1401.0
+/usr/lib64/libgstrtp-1.0.so.0.1402.0
 /usr/lib64/libgstrtsp-1.0.so.0
-/usr/lib64/libgstrtsp-1.0.so.0.1401.0
+/usr/lib64/libgstrtsp-1.0.so.0.1402.0
 /usr/lib64/libgstsdp-1.0.so.0
-/usr/lib64/libgstsdp-1.0.so.0.1401.0
+/usr/lib64/libgstsdp-1.0.so.0.1402.0
 /usr/lib64/libgsttag-1.0.so.0
-/usr/lib64/libgsttag-1.0.so.0.1401.0
+/usr/lib64/libgsttag-1.0.so.0.1402.0
 /usr/lib64/libgstvideo-1.0.so.0
-/usr/lib64/libgstvideo-1.0.so.0.1401.0
+/usr/lib64/libgstvideo-1.0.so.0.1402.0
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/gst-plugins-base/COPYING
+/usr/share/doc/gst-plugins-base/COPYING.LIB
+/usr/share/doc/gst-plugins-base/gst-libs_gst_tag_licenses.c
 
 %files man
 %defattr(-,root,root,-)
