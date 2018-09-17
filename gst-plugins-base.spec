@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5D2EEE6F6F349D7C (tim@centricular.com)
 #
 Name     : gst-plugins-base
-Version  : 1.14.2
-Release  : 26
-URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.2.tar.xz
-Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.2.tar.xz
-Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.2.tar.xz.asc
+Version  : 1.14.3
+Release  : 27
+URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.3.tar.xz
+Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.3.tar.xz
+Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.3.tar.xz.asc
 Summary  : RTSP base classes and helper functions
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0
@@ -19,6 +19,7 @@ Requires: gst-plugins-base-lib
 Requires: gst-plugins-base-license
 Requires: gst-plugins-base-locales
 Requires: gst-plugins-base-man
+BuildRequires : buildreq-kde
 BuildRequires : buildreq-meson
 BuildRequires : clutter-dev
 BuildRequires : docbook-xml
@@ -33,6 +34,7 @@ BuildRequires : libjpeg-turbo-dev
 BuildRequires : libogg-dev
 BuildRequires : libvorbis-dev
 BuildRequires : libxslt-bin
+BuildRequires : mesa-dev
 BuildRequires : opus-dev
 BuildRequires : orc
 BuildRequires : orc-dev
@@ -54,6 +56,7 @@ BuildRequires : pkgconfig(x11)
 BuildRequires : pkgconfig(xext)
 BuildRequires : pkgconfig(xv)
 BuildRequires : pkgconfig(zlib)
+BuildRequires : qtbase-extras
 BuildRequires : valgrind
 
 %description
@@ -137,14 +140,14 @@ man components for the gst-plugins-base package.
 
 
 %prep
-%setup -q -n gst-plugins-base-1.14.2
+%setup -q -n gst-plugins-base-1.14.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532090939
+export SOURCE_DATE_EPOCH=1537203883
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -163,7 +166,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1532090939
+export SOURCE_DATE_EPOCH=1537203883
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/gst-plugins-base
 cp COPYING %{buildroot}/usr/share/doc/gst-plugins-base/COPYING
@@ -743,29 +746,29 @@ cp gst-libs/gst/tag/licenses.c %{buildroot}/usr/share/doc/gst-plugins-base/gst-l
 /usr/lib64/gstreamer-1.0/libgstximagesink.so
 /usr/lib64/gstreamer-1.0/libgstxvimagesink.so
 /usr/lib64/libgstallocators-1.0.so.0
-/usr/lib64/libgstallocators-1.0.so.0.1402.0
+/usr/lib64/libgstallocators-1.0.so.0.1403.0
 /usr/lib64/libgstapp-1.0.so.0
-/usr/lib64/libgstapp-1.0.so.0.1402.0
+/usr/lib64/libgstapp-1.0.so.0.1403.0
 /usr/lib64/libgstaudio-1.0.so.0
-/usr/lib64/libgstaudio-1.0.so.0.1402.0
+/usr/lib64/libgstaudio-1.0.so.0.1403.0
 /usr/lib64/libgstfft-1.0.so.0
-/usr/lib64/libgstfft-1.0.so.0.1402.0
+/usr/lib64/libgstfft-1.0.so.0.1403.0
 /usr/lib64/libgstgl-1.0.so.0
-/usr/lib64/libgstgl-1.0.so.0.1402.0
+/usr/lib64/libgstgl-1.0.so.0.1403.0
 /usr/lib64/libgstpbutils-1.0.so.0
-/usr/lib64/libgstpbutils-1.0.so.0.1402.0
+/usr/lib64/libgstpbutils-1.0.so.0.1403.0
 /usr/lib64/libgstriff-1.0.so.0
-/usr/lib64/libgstriff-1.0.so.0.1402.0
+/usr/lib64/libgstriff-1.0.so.0.1403.0
 /usr/lib64/libgstrtp-1.0.so.0
-/usr/lib64/libgstrtp-1.0.so.0.1402.0
+/usr/lib64/libgstrtp-1.0.so.0.1403.0
 /usr/lib64/libgstrtsp-1.0.so.0
-/usr/lib64/libgstrtsp-1.0.so.0.1402.0
+/usr/lib64/libgstrtsp-1.0.so.0.1403.0
 /usr/lib64/libgstsdp-1.0.so.0
-/usr/lib64/libgstsdp-1.0.so.0.1402.0
+/usr/lib64/libgstsdp-1.0.so.0.1403.0
 /usr/lib64/libgsttag-1.0.so.0
-/usr/lib64/libgsttag-1.0.so.0.1402.0
+/usr/lib64/libgsttag-1.0.so.0.1403.0
 /usr/lib64/libgstvideo-1.0.so.0
-/usr/lib64/libgstvideo-1.0.so.0.1402.0
+/usr/lib64/libgstvideo-1.0.so.0.1403.0
 
 %files license
 %defattr(-,root,root,-)
