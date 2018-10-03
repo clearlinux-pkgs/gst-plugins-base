@@ -1,6 +1,7 @@
-1.14.3
+1.14.4
 buildreq-kde
 libjpeg-turbo-dev
 mesa-dev
 pkgconfig(sdl)
+qtbase-dev
 qtbase-extras
