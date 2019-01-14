@@ -6,19 +6,19 @@
 #
 Name     : gst-plugins-base
 Version  : 1.14.4
-Release  : 28
+Release  : 31
 URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.4.tar.xz
 Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.4.tar.xz
 Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.14.4.tar.xz.asc
 Summary  : RTSP base classes and helper functions
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0
-Requires: gst-plugins-base-bin
-Requires: gst-plugins-base-data
-Requires: gst-plugins-base-lib
-Requires: gst-plugins-base-license
-Requires: gst-plugins-base-locales
-Requires: gst-plugins-base-man
+Requires: gst-plugins-base-bin = %{version}-%{release}
+Requires: gst-plugins-base-data = %{version}-%{release}
+Requires: gst-plugins-base-lib = %{version}-%{release}
+Requires: gst-plugins-base-license = %{version}-%{release}
+Requires: gst-plugins-base-locales = %{version}-%{release}
+Requires: gst-plugins-base-man = %{version}-%{release}
 BuildRequires : buildreq-kde
 BuildRequires : buildreq-meson
 BuildRequires : clutter-dev
@@ -57,6 +57,7 @@ BuildRequires : pkgconfig(xext)
 BuildRequires : pkgconfig(xv)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : qtbase-dev
+BuildRequires : qtbase-extras
 BuildRequires : valgrind
 
 %description
@@ -147,7 +148,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1538581037
+export SOURCE_DATE_EPOCH=1547254590
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -155,7 +156,7 @@ export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-m
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-%configure --disable-static --enable-theora
+%reconfigure --disable-static --enable-theora
 make  %{?_smp_mflags}
 
 %check
@@ -166,12 +167,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1538581037
+export SOURCE_DATE_EPOCH=1547254590
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/gst-plugins-base
-cp COPYING %{buildroot}/usr/share/doc/gst-plugins-base/COPYING
-cp COPYING.LIB %{buildroot}/usr/share/doc/gst-plugins-base/COPYING.LIB
-cp gst-libs/gst/tag/licenses.c %{buildroot}/usr/share/doc/gst-plugins-base/gst-libs_gst_tag_licenses.c
+mkdir -p %{buildroot}/usr/share/package-licenses/gst-plugins-base
+cp COPYING %{buildroot}/usr/share/package-licenses/gst-plugins-base/COPYING
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/gst-plugins-base/COPYING.LIB
+cp gst-libs/gst/tag/licenses.c %{buildroot}/usr/share/package-licenses/gst-plugins-base/gst-libs_gst_tag_licenses.c
 %make_install
 %find_lang gst-plugins-base-1.0
 
@@ -772,9 +773,9 @@ cp gst-libs/gst/tag/licenses.c %{buildroot}/usr/share/doc/gst-plugins-base/gst-l
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/doc/gst-plugins-base/COPYING
-/usr/share/doc/gst-plugins-base/COPYING.LIB
-/usr/share/doc/gst-plugins-base/gst-libs_gst_tag_licenses.c
+/usr/share/package-licenses/gst-plugins-base/COPYING
+/usr/share/package-licenses/gst-plugins-base/COPYING.LIB
+/usr/share/package-licenses/gst-plugins-base/gst-libs_gst_tag_licenses.c
 
 %files man
 %defattr(0644,root,root,0755)
