@@ -1,9 +1,7 @@
 libEGL.so.1
 libGL.so.1
 libGLESv2.so.2
-libX11-xcb.so.1
 libX11.so.6
-libXext.so.6
 libXv.so.1
 libasound.so.2
 libc.so.6
@@ -35,5 +33,4 @@ libvorbisenc.so.2
 libwayland-client.so.0
 libwayland-cursor.so.0
 libwayland-egl.so.1
-libxcb.so.1
 libz.so.1
