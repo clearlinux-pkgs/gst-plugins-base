@@ -1071,6 +1071,7 @@ libgstrtsp-1.0.so.0:gst_rtsp_connection_read
 libgstrtsp-1.0.so.0:gst_rtsp_connection_receive
 libgstrtsp-1.0.so.0:gst_rtsp_connection_reset_timeout
 libgstrtsp-1.0.so.0:gst_rtsp_connection_send
+libgstrtsp-1.0.so.0:gst_rtsp_connection_send_messages
 libgstrtsp-1.0.so.0:gst_rtsp_connection_set_accept_certificate_func
 libgstrtsp-1.0.so.0:gst_rtsp_connection_set_auth
 libgstrtsp-1.0.so.0:gst_rtsp_connection_set_auth_param
@@ -1112,9 +1113,11 @@ libgstrtsp-1.0.so.0:gst_rtsp_message_copy
 libgstrtsp-1.0.so.0:gst_rtsp_message_dump
 libgstrtsp-1.0.so.0:gst_rtsp_message_free
 libgstrtsp-1.0.so.0:gst_rtsp_message_get_body
+libgstrtsp-1.0.so.0:gst_rtsp_message_get_body_buffer
 libgstrtsp-1.0.so.0:gst_rtsp_message_get_header
 libgstrtsp-1.0.so.0:gst_rtsp_message_get_header_by_name
 libgstrtsp-1.0.so.0:gst_rtsp_message_get_type
+libgstrtsp-1.0.so.0:gst_rtsp_message_has_body_buffer
 libgstrtsp-1.0.so.0:gst_rtsp_message_init
 libgstrtsp-1.0.so.0:gst_rtsp_message_init_data
 libgstrtsp-1.0.so.0:gst_rtsp_message_init_request
@@ -1130,8 +1133,11 @@ libgstrtsp-1.0.so.0:gst_rtsp_message_parse_response
 libgstrtsp-1.0.so.0:gst_rtsp_message_remove_header
 libgstrtsp-1.0.so.0:gst_rtsp_message_remove_header_by_name
 libgstrtsp-1.0.so.0:gst_rtsp_message_set_body
+libgstrtsp-1.0.so.0:gst_rtsp_message_set_body_buffer
 libgstrtsp-1.0.so.0:gst_rtsp_message_steal_body
+libgstrtsp-1.0.so.0:gst_rtsp_message_steal_body_buffer
 libgstrtsp-1.0.so.0:gst_rtsp_message_take_body
+libgstrtsp-1.0.so.0:gst_rtsp_message_take_body_buffer
 libgstrtsp-1.0.so.0:gst_rtsp_message_take_header
 libgstrtsp-1.0.so.0:gst_rtsp_message_take_header_by_name
 libgstrtsp-1.0.so.0:gst_rtsp_message_unset
@@ -1178,6 +1184,7 @@ libgstrtsp-1.0.so.0:gst_rtsp_watch_get_send_backlog
 libgstrtsp-1.0.so.0:gst_rtsp_watch_new
 libgstrtsp-1.0.so.0:gst_rtsp_watch_reset
 libgstrtsp-1.0.so.0:gst_rtsp_watch_send_message
+libgstrtsp-1.0.so.0:gst_rtsp_watch_send_messages
 libgstrtsp-1.0.so.0:gst_rtsp_watch_set_flushing
 libgstrtsp-1.0.so.0:gst_rtsp_watch_set_send_backlog
 libgstrtsp-1.0.so.0:gst_rtsp_watch_unref

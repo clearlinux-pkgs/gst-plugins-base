@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5D2EEE6F6F349D7C (tim@centricular.com)
 #
 Name     : gst-plugins-base
-Version  : 1.15.1
-Release  : 33
-URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.15.1.tar.xz
-Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.15.1.tar.xz
-Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.15.1.tar.xz.asc
+Version  : 1.15.2
+Release  : 35
+URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.15.2.tar.xz
+Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.15.2.tar.xz
+Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.15.2.tar.xz.asc
 Summary  : RTSP base classes and helper functions
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0
@@ -70,7 +70,6 @@ Summary: bin components for the gst-plugins-base package.
 Group: Binaries
 Requires: gst-plugins-base-data = %{version}-%{release}
 Requires: gst-plugins-base-license = %{version}-%{release}
-Requires: gst-plugins-base-man = %{version}-%{release}
 
 %description bin
 bin components for the gst-plugins-base package.
@@ -140,14 +139,14 @@ man components for the gst-plugins-base package.
 
 
 %prep
-%setup -q -n gst-plugins-base-1.15.1
+%setup -q -n gst-plugins-base-1.15.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1548283974
+export SOURCE_DATE_EPOCH=1551389265
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -166,7 +165,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1548283974
+export SOURCE_DATE_EPOCH=1551389265
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gst-plugins-base
 cp COPYING %{buildroot}/usr/share/package-licenses/gst-plugins-base/COPYING
@@ -770,29 +769,29 @@ cp gst-libs/gst/tag/licenses.c %{buildroot}/usr/share/package-licenses/gst-plugi
 /usr/lib64/gstreamer-1.0/libgstximagesink.so
 /usr/lib64/gstreamer-1.0/libgstxvimagesink.so
 /usr/lib64/libgstallocators-1.0.so.0
-/usr/lib64/libgstallocators-1.0.so.0.1501.0
+/usr/lib64/libgstallocators-1.0.so.0.1502.0
 /usr/lib64/libgstapp-1.0.so.0
-/usr/lib64/libgstapp-1.0.so.0.1501.0
+/usr/lib64/libgstapp-1.0.so.0.1502.0
 /usr/lib64/libgstaudio-1.0.so.0
-/usr/lib64/libgstaudio-1.0.so.0.1501.0
+/usr/lib64/libgstaudio-1.0.so.0.1502.0
 /usr/lib64/libgstfft-1.0.so.0
-/usr/lib64/libgstfft-1.0.so.0.1501.0
+/usr/lib64/libgstfft-1.0.so.0.1502.0
 /usr/lib64/libgstgl-1.0.so.0
-/usr/lib64/libgstgl-1.0.so.0.1501.0
+/usr/lib64/libgstgl-1.0.so.0.1502.0
 /usr/lib64/libgstpbutils-1.0.so.0
-/usr/lib64/libgstpbutils-1.0.so.0.1501.0
+/usr/lib64/libgstpbutils-1.0.so.0.1502.0
 /usr/lib64/libgstriff-1.0.so.0
-/usr/lib64/libgstriff-1.0.so.0.1501.0
+/usr/lib64/libgstriff-1.0.so.0.1502.0
 /usr/lib64/libgstrtp-1.0.so.0
-/usr/lib64/libgstrtp-1.0.so.0.1501.0
+/usr/lib64/libgstrtp-1.0.so.0.1502.0
 /usr/lib64/libgstrtsp-1.0.so.0
-/usr/lib64/libgstrtsp-1.0.so.0.1501.0
+/usr/lib64/libgstrtsp-1.0.so.0.1502.0
 /usr/lib64/libgstsdp-1.0.so.0
-/usr/lib64/libgstsdp-1.0.so.0.1501.0
+/usr/lib64/libgstsdp-1.0.so.0.1502.0
 /usr/lib64/libgsttag-1.0.so.0
-/usr/lib64/libgsttag-1.0.so.0.1501.0
+/usr/lib64/libgsttag-1.0.so.0.1502.0
 /usr/lib64/libgstvideo-1.0.so.0
-/usr/lib64/libgstvideo-1.0.so.0.1501.0
+/usr/lib64/libgstvideo-1.0.so.0.1502.0
 
 %files license
 %defattr(0644,root,root,0755)
