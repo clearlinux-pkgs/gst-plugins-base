@@ -6,7 +6,7 @@
 #
 Name     : gst-plugins-base
 Version  : 1.16.0
-Release  : 36
+Release  : 37
 URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.16.0.tar.xz
 Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.16.0.tar.xz
 Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.16.0.tar.xz.asc
@@ -26,6 +26,7 @@ BuildRequires : docbook-xml
 BuildRequires : glu-dev
 BuildRequires : gobject-introspection
 BuildRequires : gobject-introspection-dev
+BuildRequires : graphene-dev
 BuildRequires : gst-plugins-base-dev
 BuildRequires : gstreamer-dev
 BuildRequires : gtk-doc
@@ -57,6 +58,7 @@ BuildRequires : pkgconfig(xext)
 BuildRequires : pkgconfig(xv)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : qtbase-dev
+BuildRequires : qtbase-extras
 BuildRequires : valgrind
 
 %description
@@ -169,7 +171,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555678880
+export SOURCE_DATE_EPOCH=1555679666
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -188,7 +190,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1555678880
+export SOURCE_DATE_EPOCH=1555679666
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gst-plugins-base
 cp COPYING %{buildroot}/usr/share/package-licenses/gst-plugins-base/COPYING

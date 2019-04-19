@@ -24,7 +24,6 @@ Configure miss: x86_64-generic-linux-gnu-moc
 Configure miss: whether iso-codes are available on this system
 Configure miss: CDPARANOIA
 Configure miss: cdda_open in -lcdda_interface
-Configure miss: GRAPHENE
 Configure miss: jpeg_set_defaults in -ljpeg-mmx
 Configure miss: IVORBIS
 Configure miss: vorbis_block_init in -lvorbisidec

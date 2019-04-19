@@ -1,5 +1,6 @@
 1.16.0
 buildreq-kde
+graphene-dev
 libjpeg-turbo-dev
 mesa-dev
 pkgconfig(sdl)
