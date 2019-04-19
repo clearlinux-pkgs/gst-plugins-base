@@ -4,7 +4,6 @@ Configure miss: whether __i386__ is declared
 Configure miss: ARM NEON support in current arch/CFLAGS
 Configure miss: to see if Objective C compiler understands 
 Configure miss: to see if Objective C compiler understands -Wall
-Configure miss: to see if Objective C compiler understands -Werror
 Configure miss: to see if Objective C compiler understands -Wmissing-declarations
 Configure miss: to see if Objective C compiler understands -Wredundant-decls
 Configure miss: to see if Objective C compiler understands -Wwrite-strings

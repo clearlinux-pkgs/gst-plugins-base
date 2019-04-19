@@ -126,6 +126,7 @@ libgstaudio-1.0.so.0:gst_audio_converter_supports_inplace
 libgstaudio-1.0.so.0:gst_audio_converter_update_config
 libgstaudio-1.0.so.0:gst_audio_decoder_allocate_output_buffer
 libgstaudio-1.0.so.0:gst_audio_decoder_finish_frame
+libgstaudio-1.0.so.0:gst_audio_decoder_finish_subframe
 libgstaudio-1.0.so.0:gst_audio_decoder_get_allocator
 libgstaudio-1.0.so.0:gst_audio_decoder_get_audio_info
 libgstaudio-1.0.so.0:gst_audio_decoder_get_delay
@@ -412,6 +413,8 @@ libgstgl-1.0.so.0:gst_gl_context_new_wrapped
 libgstgl-1.0.so.0:gst_gl_context_set_shared_with
 libgstgl-1.0.so.0:gst_gl_context_set_window
 libgstgl-1.0.so.0:gst_gl_context_supports_glsl_profile_version
+libgstgl-1.0.so.0:gst_gl_context_supports_precision
+libgstgl-1.0.so.0:gst_gl_context_supports_precision_highp
 libgstgl-1.0.so.0:gst_gl_context_swap_buffers
 libgstgl-1.0.so.0:gst_gl_context_thread_add
 libgstgl-1.0.so.0:gst_gl_display_add_context
@@ -559,6 +562,9 @@ libgstgl-1.0.so.0:gst_gl_shader_set_uniform_matrix_3x4fv
 libgstgl-1.0.so.0:gst_gl_shader_set_uniform_matrix_4fv
 libgstgl-1.0.so.0:gst_gl_shader_set_uniform_matrix_4x2fv
 libgstgl-1.0.so.0:gst_gl_shader_set_uniform_matrix_4x3fv
+libgstgl-1.0.so.0:gst_gl_shader_string_fragment_external_oes_get_default
+libgstgl-1.0.so.0:gst_gl_shader_string_fragment_get_default
+libgstgl-1.0.so.0:gst_gl_shader_string_get_highest_precision
 libgstgl-1.0.so.0:gst_gl_shader_use
 libgstgl-1.0.so.0:gst_gl_sized_gl_format_from_gl_format_type
 libgstgl-1.0.so.0:gst_gl_stereo_downmix_get_type
@@ -606,6 +612,7 @@ libgstgl-1.0.so.0:gst_gl_view_convert_set_caps
 libgstgl-1.0.so.0:gst_gl_view_convert_set_context
 libgstgl-1.0.so.0:gst_gl_view_convert_submit_input_buffer
 libgstgl-1.0.so.0:gst_gl_view_convert_transform_caps
+libgstgl-1.0.so.0:gst_gl_window_controls_viewport
 libgstgl-1.0.so.0:gst_gl_window_draw
 libgstgl-1.0.so.0:gst_gl_window_error_get_type
 libgstgl-1.0.so.0:gst_gl_window_error_quark
