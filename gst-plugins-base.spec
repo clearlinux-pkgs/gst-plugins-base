@@ -6,11 +6,11 @@
 #
 Name     : gst-plugins-base
 Version  : 1.16.0
-Release  : 37
+Release  : 38
 URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.16.0.tar.xz
 Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.16.0.tar.xz
 Source99 : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.16.0.tar.xz.asc
-Summary  : GStreamer Multimedia Framework Base Plugins
+Summary  : GStreamer open-source multimedia framework base plugins
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0
 Requires: gst-plugins-base-bin = %{version}-%{release}
@@ -171,7 +171,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555679666
+export SOURCE_DATE_EPOCH=1557093596
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -190,7 +190,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1555679666
+export SOURCE_DATE_EPOCH=1557093596
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gst-plugins-base
 cp COPYING %{buildroot}/usr/share/package-licenses/gst-plugins-base/COPYING
