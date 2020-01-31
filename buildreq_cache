@@ -1,7 +1,0 @@
-1.16.2
-buildreq-kde
-graphene-dev
-libjpeg-turbo-dev
-mesa-dev
-pkgconfig(sdl)
-qtbase-dev

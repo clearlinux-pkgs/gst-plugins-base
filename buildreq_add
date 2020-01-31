@@ -1,14 +1,16 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-gstreamer-dev
-gobject-introspection-dev
-gobject-introspection
-valgrind
-opus-dev
-libvorbis-dev
-libogg-dev
-orc
-orc-dev
-gst-plugins-base-dev
-glu-dev
+buildreq-kde
 clutter-dev
+glu-dev
+gobject-introspection-dev
+graphene-dev
+gstreamer-dev
+libjpeg-turbo-dev
+libogg-dev
+libvorbis-dev
+mesa-dev
+opus-dev
+orc-dev
+qtbase-dev
+valgrind
