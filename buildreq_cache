@@ -1,0 +1,10 @@
+1.18.0
+SDL2-dev
+libgudev-dev
+pkgconfig(alsa)
+pkgconfig(gstreamer-audio-1.0)
+pkgconfig(gstreamer-sdp-1.0)
+pkgconfig(gstreamer-video-1.0)
+pkgconfig(gudev-1.0)
+pkgconfig(theoradec)
+pkgconfig(valgrind)
