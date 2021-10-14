@@ -6,7 +6,7 @@
 #
 Name     : gst-plugins-base
 Version  : 1.18.5
-Release  : 50
+Release  : 51
 URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.5.tar.xz
 Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.5.tar.xz
 Source1  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.5.tar.xz.asc
@@ -15,6 +15,7 @@ Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0
 Requires: gst-plugins-base-bin = %{version}-%{release}
 Requires: gst-plugins-base-data = %{version}-%{release}
+Requires: gst-plugins-base-filemap = %{version}-%{release}
 Requires: gst-plugins-base-lib = %{version}-%{release}
 Requires: gst-plugins-base-license = %{version}-%{release}
 Requires: gst-plugins-base-locales = %{version}-%{release}
@@ -60,6 +61,7 @@ Summary: bin components for the gst-plugins-base package.
 Group: Binaries
 Requires: gst-plugins-base-data = %{version}-%{release}
 Requires: gst-plugins-base-license = %{version}-%{release}
+Requires: gst-plugins-base-filemap = %{version}-%{release}
 
 %description bin
 bin components for the gst-plugins-base package.
@@ -86,11 +88,20 @@ Requires: gst-plugins-base = %{version}-%{release}
 dev components for the gst-plugins-base package.
 
 
+%package filemap
+Summary: filemap components for the gst-plugins-base package.
+Group: Default
+
+%description filemap
+filemap components for the gst-plugins-base package.
+
+
 %package lib
 Summary: lib components for the gst-plugins-base package.
 Group: Libraries
 Requires: gst-plugins-base-data = %{version}-%{release}
 Requires: gst-plugins-base-license = %{version}-%{release}
+Requires: gst-plugins-base-filemap = %{version}-%{release}
 
 %description lib
 lib components for the gst-plugins-base package.
@@ -123,13 +134,16 @@ man components for the gst-plugins-base package.
 %prep
 %setup -q -n gst-plugins-base-1.18.5
 cd %{_builddir}/gst-plugins-base-1.18.5
+pushd ..
+cp -a gst-plugins-base-1.18.5 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1631204253
+export SOURCE_DATE_EPOCH=1634227935
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -141,21 +155,26 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain --wrap-mode=nodownload \
 -Dtheora=enabled  builddir
 ninja -v -C builddir
+CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -O3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3" meson --libdir=lib64 --prefix=/usr --buildtype=plain --wrap-mode=nodownload \
+-Dtheora=enabled  builddiravx2
+ninja -v -C builddiravx2
 
 %check
 export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-meson test -C builddir || :
+meson test -C builddir --print-errorlogs || :
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/gst-plugins-base
 cp %{_builddir}/gst-plugins-base-1.18.5/COPYING %{buildroot}/usr/share/package-licenses/gst-plugins-base/249308ff72cc14f24d4756377a537281c13ec8fa
 cp %{_builddir}/gst-plugins-base-1.18.5/docs/random/LICENSE %{buildroot}/usr/share/package-licenses/gst-plugins-base/22990b105a08bb838c95fcc4bc5450c6dfdc79ac
 cp %{_builddir}/gst-plugins-base-1.18.5/gst-libs/gst/tag/licenses.c %{buildroot}/usr/share/package-licenses/gst-plugins-base/2d38a685bddde83e2f7aeebcb45bcbe11854b727
+DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
 DESTDIR=%{buildroot} ninja -C builddir install
 %find_lang gst-plugins-base-1.0
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -165,6 +184,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/bin/gst-device-monitor-1.0
 /usr/bin/gst-discoverer-1.0
 /usr/bin/gst-play-1.0
+/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -406,6 +426,10 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/pkgconfig/gstreamer-tag-1.0.pc
 /usr/lib64/pkgconfig/gstreamer-video-1.0.pc
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-gst-plugins-base
+
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/gstreamer-1.0/libgstadder.so
@@ -463,6 +487,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/libgsttag-1.0.so.0.1805.0
 /usr/lib64/libgstvideo-1.0.so.0
 /usr/lib64/libgstvideo-1.0.so.0.1805.0
+/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
