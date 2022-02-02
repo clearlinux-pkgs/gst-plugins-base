@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5D2EEE6F6F349D7C (tim@centricular.com)
 #
 Name     : gst-plugins-base
-Version  : 1.18.5
-Release  : 53
-URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.5.tar.xz
-Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.5.tar.xz
-Source1  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.5.tar.xz.asc
+Version  : 1.18.6
+Release  : 54
+URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.6.tar.xz
+Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.6.tar.xz
+Source1  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.6.tar.xz.asc
 Summary  : Video base classes and helper functions
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0
@@ -44,7 +44,7 @@ BuildRequires : pkgconfig(gudev-1.0)
 BuildRequires : pkgconfig(iso-codes)
 BuildRequires : pkgconfig(sdl)
 BuildRequires : pkgconfig(theoradec)
-BuildRequires : pkgconfig(valgrind)
+BuildRequires : pkgconfig(wayland-protocols)
 BuildRequires : pkgconfig(x11)
 BuildRequires : pkgconfig(xv)
 BuildRequires : qtbase-dev
@@ -132,10 +132,13 @@ man components for the gst-plugins-base package.
 
 
 %prep
-%setup -q -n gst-plugins-base-1.18.5
-cd %{_builddir}/gst-plugins-base-1.18.5
+%setup -q -n gst-plugins-base-1.18.6
+cd %{_builddir}/gst-plugins-base-1.18.6
 pushd ..
-cp -a gst-plugins-base-1.18.5 buildavx2
+cp -a gst-plugins-base-1.18.6 buildavx2
+popd
+pushd ..
+cp -a gst-plugins-base-1.18.6 buildavx512
 popd
 
 %build
@@ -143,7 +146,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1634227935
+export SOURCE_DATE_EPOCH=1643838416
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -155,9 +158,12 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain --wrap-mode=nodownload \
 -Dtheora=enabled  builddir
 ninja -v -C builddir
-CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -O3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3" meson --libdir=lib64 --prefix=/usr --buildtype=plain --wrap-mode=nodownload \
+CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -O3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3" meson --libdir=lib64 --prefix=/usr --buildtype=plain --wrap-mode=nodownload \
 -Dtheora=enabled  builddiravx2
 ninja -v -C builddiravx2
+CFLAGS="$CFLAGS -m64 -march=x86-64-v4 -Wl,-z,x86-64-v4 -O3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v4 -Wl,-z,x86-64-v4 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v4" meson --libdir=lib64 --prefix=/usr --buildtype=plain --wrap-mode=nodownload \
+-Dtheora=enabled  builddiravx512
+ninja -v -C builddiravx512
 
 %check
 export LANG=C.UTF-8
@@ -168,13 +174,15 @@ meson test -C builddir --print-errorlogs || :
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/gst-plugins-base
-cp %{_builddir}/gst-plugins-base-1.18.5/COPYING %{buildroot}/usr/share/package-licenses/gst-plugins-base/249308ff72cc14f24d4756377a537281c13ec8fa
-cp %{_builddir}/gst-plugins-base-1.18.5/docs/random/LICENSE %{buildroot}/usr/share/package-licenses/gst-plugins-base/22990b105a08bb838c95fcc4bc5450c6dfdc79ac
-cp %{_builddir}/gst-plugins-base-1.18.5/gst-libs/gst/tag/licenses.c %{buildroot}/usr/share/package-licenses/gst-plugins-base/2d38a685bddde83e2f7aeebcb45bcbe11854b727
+cp %{_builddir}/gst-plugins-base-1.18.6/COPYING %{buildroot}/usr/share/package-licenses/gst-plugins-base/249308ff72cc14f24d4756377a537281c13ec8fa
+cp %{_builddir}/gst-plugins-base-1.18.6/docs/random/LICENSE %{buildroot}/usr/share/package-licenses/gst-plugins-base/22990b105a08bb838c95fcc4bc5450c6dfdc79ac
+cp %{_builddir}/gst-plugins-base-1.18.6/gst-libs/gst/tag/licenses.c %{buildroot}/usr/share/package-licenses/gst-plugins-base/2d38a685bddde83e2f7aeebcb45bcbe11854b727
 DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
+DESTDIR=%{buildroot}-v4 ninja -C builddiravx512 install
 DESTDIR=%{buildroot} ninja -C builddir install
 %find_lang gst-plugins-base-1.0
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx512 %{buildroot}-v4 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -464,29 +472,29 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/gstreamer-1.0/libgstximagesink.so
 /usr/lib64/gstreamer-1.0/libgstxvimagesink.so
 /usr/lib64/libgstallocators-1.0.so.0
-/usr/lib64/libgstallocators-1.0.so.0.1805.0
+/usr/lib64/libgstallocators-1.0.so.0.1806.0
 /usr/lib64/libgstapp-1.0.so.0
-/usr/lib64/libgstapp-1.0.so.0.1805.0
+/usr/lib64/libgstapp-1.0.so.0.1806.0
 /usr/lib64/libgstaudio-1.0.so.0
-/usr/lib64/libgstaudio-1.0.so.0.1805.0
+/usr/lib64/libgstaudio-1.0.so.0.1806.0
 /usr/lib64/libgstfft-1.0.so.0
-/usr/lib64/libgstfft-1.0.so.0.1805.0
+/usr/lib64/libgstfft-1.0.so.0.1806.0
 /usr/lib64/libgstgl-1.0.so.0
-/usr/lib64/libgstgl-1.0.so.0.1805.0
+/usr/lib64/libgstgl-1.0.so.0.1806.0
 /usr/lib64/libgstpbutils-1.0.so.0
-/usr/lib64/libgstpbutils-1.0.so.0.1805.0
+/usr/lib64/libgstpbutils-1.0.so.0.1806.0
 /usr/lib64/libgstriff-1.0.so.0
-/usr/lib64/libgstriff-1.0.so.0.1805.0
+/usr/lib64/libgstriff-1.0.so.0.1806.0
 /usr/lib64/libgstrtp-1.0.so.0
-/usr/lib64/libgstrtp-1.0.so.0.1805.0
+/usr/lib64/libgstrtp-1.0.so.0.1806.0
 /usr/lib64/libgstrtsp-1.0.so.0
-/usr/lib64/libgstrtsp-1.0.so.0.1805.0
+/usr/lib64/libgstrtsp-1.0.so.0.1806.0
 /usr/lib64/libgstsdp-1.0.so.0
-/usr/lib64/libgstsdp-1.0.so.0.1805.0
+/usr/lib64/libgstsdp-1.0.so.0.1806.0
 /usr/lib64/libgsttag-1.0.so.0
-/usr/lib64/libgsttag-1.0.so.0.1805.0
+/usr/lib64/libgsttag-1.0.so.0.1806.0
 /usr/lib64/libgstvideo-1.0.so.0
-/usr/lib64/libgstvideo-1.0.so.0.1805.0
+/usr/lib64/libgstvideo-1.0.so.0.1806.0
 /usr/share/clear/optimized-elf/lib*
 
 %files license
