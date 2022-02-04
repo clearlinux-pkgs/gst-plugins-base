@@ -5,14 +5,14 @@
 # Source0 file verified with key 0x5D2EEE6F6F349D7C (tim@centricular.com)
 #
 Name     : gst-plugins-base
-Version  : 1.18.6
-Release  : 54
-URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.6.tar.xz
-Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.6.tar.xz
-Source1  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.6.tar.xz.asc
-Summary  : Video base classes and helper functions
+Version  : 1.20.0
+Release  : 55
+URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.20.0.tar.xz
+Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.20.0.tar.xz
+Source1  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.20.0.tar.xz.asc
+Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GPL-2.0 LGPL-2.0
+License  : GPL-2.0 LGPL-2.1
 Requires: gst-plugins-base-bin = %{version}-%{release}
 Requires: gst-plugins-base-data = %{version}-%{release}
 Requires: gst-plugins-base-filemap = %{version}-%{release}
@@ -37,6 +37,7 @@ BuildRequires : mesa-dev
 BuildRequires : opus-dev
 BuildRequires : orc-dev
 BuildRequires : pkgconfig(alsa)
+BuildRequires : pkgconfig(gstreamer-1.0)
 BuildRequires : pkgconfig(gstreamer-audio-1.0)
 BuildRequires : pkgconfig(gstreamer-sdp-1.0)
 BuildRequires : pkgconfig(gstreamer-video-1.0)
@@ -51,7 +52,7 @@ BuildRequires : qtbase-dev
 BuildRequires : valgrind
 
 %description
-GStreamer 1.18.x stable series
+GStreamer 1.20.x stable series
 WHAT IT IS
 ----------
 This is GStreamer, a framework for streaming media.
@@ -132,13 +133,13 @@ man components for the gst-plugins-base package.
 
 
 %prep
-%setup -q -n gst-plugins-base-1.18.6
-cd %{_builddir}/gst-plugins-base-1.18.6
+%setup -q -n gst-plugins-base-1.20.0
+cd %{_builddir}/gst-plugins-base-1.20.0
 pushd ..
-cp -a gst-plugins-base-1.18.6 buildavx2
+cp -a gst-plugins-base-1.20.0 buildavx2
 popd
 pushd ..
-cp -a gst-plugins-base-1.18.6 buildavx512
+cp -a gst-plugins-base-1.20.0 buildavx512
 popd
 
 %build
@@ -146,7 +147,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1643838416
+export SOURCE_DATE_EPOCH=1643939962
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -174,9 +175,9 @@ meson test -C builddir --print-errorlogs || :
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/gst-plugins-base
-cp %{_builddir}/gst-plugins-base-1.18.6/COPYING %{buildroot}/usr/share/package-licenses/gst-plugins-base/249308ff72cc14f24d4756377a537281c13ec8fa
-cp %{_builddir}/gst-plugins-base-1.18.6/docs/random/LICENSE %{buildroot}/usr/share/package-licenses/gst-plugins-base/22990b105a08bb838c95fcc4bc5450c6dfdc79ac
-cp %{_builddir}/gst-plugins-base-1.18.6/gst-libs/gst/tag/licenses.c %{buildroot}/usr/share/package-licenses/gst-plugins-base/2d38a685bddde83e2f7aeebcb45bcbe11854b727
+cp %{_builddir}/gst-plugins-base-1.20.0/COPYING %{buildroot}/usr/share/package-licenses/gst-plugins-base/39743f6cf5d70ee54b72485784313148db159a70
+cp %{_builddir}/gst-plugins-base-1.20.0/docs/random/LICENSE %{buildroot}/usr/share/package-licenses/gst-plugins-base/22990b105a08bb838c95fcc4bc5450c6dfdc79ac
+cp %{_builddir}/gst-plugins-base-1.20.0/gst-libs/gst/tag/licenses.c %{buildroot}/usr/share/package-licenses/gst-plugins-base/2d38a685bddde83e2f7aeebcb45bcbe11854b727
 DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
 DESTDIR=%{buildroot}-v4 ninja -C builddiravx512 install
 DESTDIR=%{buildroot} ninja -C builddir install
@@ -269,6 +270,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/include/gstreamer-1.0/gst/gl/glprototypes/all_functions.h
 /usr/include/gstreamer-1.0/gst/gl/glprototypes/base.h
 /usr/include/gstreamer-1.0/gst/gl/glprototypes/blending.h
+/usr/include/gstreamer-1.0/gst/gl/glprototypes/buffer_storage.h
 /usr/include/gstreamer-1.0/gst/gl/glprototypes/buffers.h
 /usr/include/gstreamer-1.0/gst/gl/glprototypes/debug.h
 /usr/include/gstreamer-1.0/gst/gl/glprototypes/eglimage.h
@@ -292,6 +294,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/include/gstreamer-1.0/gst/gl/gstglbufferpool.h
 /usr/include/gstreamer-1.0/gst/gl/gstglcolorconvert.h
 /usr/include/gstreamer-1.0/gst/gl/gstglcontext.h
+/usr/include/gstreamer-1.0/gst/gl/gstglcontextconfig.h
 /usr/include/gstreamer-1.0/gst/gl/gstgldebug.h
 /usr/include/gstreamer-1.0/gst/gl/gstgldisplay.h
 /usr/include/gstreamer-1.0/gst/gl/gstglfeature.h
@@ -372,6 +375,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/include/gstreamer-1.0/gst/video/colorbalancechannel.h
 /usr/include/gstreamer-1.0/gst/video/gstvideoaffinetransformationmeta.h
 /usr/include/gstreamer-1.0/gst/video/gstvideoaggregator.h
+/usr/include/gstreamer-1.0/gst/video/gstvideocodecalphameta.h
 /usr/include/gstreamer-1.0/gst/video/gstvideodecoder.h
 /usr/include/gstreamer-1.0/gst/video/gstvideoencoder.h
 /usr/include/gstreamer-1.0/gst/video/gstvideofilter.h
@@ -472,36 +476,36 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/gstreamer-1.0/libgstximagesink.so
 /usr/lib64/gstreamer-1.0/libgstxvimagesink.so
 /usr/lib64/libgstallocators-1.0.so.0
-/usr/lib64/libgstallocators-1.0.so.0.1806.0
+/usr/lib64/libgstallocators-1.0.so.0.2000.0
 /usr/lib64/libgstapp-1.0.so.0
-/usr/lib64/libgstapp-1.0.so.0.1806.0
+/usr/lib64/libgstapp-1.0.so.0.2000.0
 /usr/lib64/libgstaudio-1.0.so.0
-/usr/lib64/libgstaudio-1.0.so.0.1806.0
+/usr/lib64/libgstaudio-1.0.so.0.2000.0
 /usr/lib64/libgstfft-1.0.so.0
-/usr/lib64/libgstfft-1.0.so.0.1806.0
+/usr/lib64/libgstfft-1.0.so.0.2000.0
 /usr/lib64/libgstgl-1.0.so.0
-/usr/lib64/libgstgl-1.0.so.0.1806.0
+/usr/lib64/libgstgl-1.0.so.0.2000.0
 /usr/lib64/libgstpbutils-1.0.so.0
-/usr/lib64/libgstpbutils-1.0.so.0.1806.0
+/usr/lib64/libgstpbutils-1.0.so.0.2000.0
 /usr/lib64/libgstriff-1.0.so.0
-/usr/lib64/libgstriff-1.0.so.0.1806.0
+/usr/lib64/libgstriff-1.0.so.0.2000.0
 /usr/lib64/libgstrtp-1.0.so.0
-/usr/lib64/libgstrtp-1.0.so.0.1806.0
+/usr/lib64/libgstrtp-1.0.so.0.2000.0
 /usr/lib64/libgstrtsp-1.0.so.0
-/usr/lib64/libgstrtsp-1.0.so.0.1806.0
+/usr/lib64/libgstrtsp-1.0.so.0.2000.0
 /usr/lib64/libgstsdp-1.0.so.0
-/usr/lib64/libgstsdp-1.0.so.0.1806.0
+/usr/lib64/libgstsdp-1.0.so.0.2000.0
 /usr/lib64/libgsttag-1.0.so.0
-/usr/lib64/libgsttag-1.0.so.0.1806.0
+/usr/lib64/libgsttag-1.0.so.0.2000.0
 /usr/lib64/libgstvideo-1.0.so.0
-/usr/lib64/libgstvideo-1.0.so.0.1806.0
+/usr/lib64/libgstvideo-1.0.so.0.2000.0
 /usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/gst-plugins-base/22990b105a08bb838c95fcc4bc5450c6dfdc79ac
-/usr/share/package-licenses/gst-plugins-base/249308ff72cc14f24d4756377a537281c13ec8fa
 /usr/share/package-licenses/gst-plugins-base/2d38a685bddde83e2f7aeebcb45bcbe11854b727
+/usr/share/package-licenses/gst-plugins-base/39743f6cf5d70ee54b72485784313148db159a70
 
 %files man
 %defattr(0644,root,root,0755)

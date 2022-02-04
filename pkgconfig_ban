@@ -18,3 +18,5 @@ vorbisidec)
 xv)
 x11)
 bcm_host
+opengl
+glx
