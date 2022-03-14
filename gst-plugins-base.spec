@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5D2EEE6F6F349D7C (tim@centricular.com)
 #
 Name     : gst-plugins-base
-Version  : 1.20.0
-Release  : 55
-URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.20.0.tar.xz
-Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.20.0.tar.xz
-Source1  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.20.0.tar.xz.asc
+Version  : 1.20.1
+Release  : 56
+URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.20.1.tar.xz
+Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.20.1.tar.xz
+Source1  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.20.1.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -37,7 +37,6 @@ BuildRequires : mesa-dev
 BuildRequires : opus-dev
 BuildRequires : orc-dev
 BuildRequires : pkgconfig(alsa)
-BuildRequires : pkgconfig(gstreamer-1.0)
 BuildRequires : pkgconfig(gstreamer-audio-1.0)
 BuildRequires : pkgconfig(gstreamer-sdp-1.0)
 BuildRequires : pkgconfig(gstreamer-video-1.0)
@@ -52,10 +51,32 @@ BuildRequires : qtbase-dev
 BuildRequires : valgrind
 
 %description
-GStreamer 1.20.x stable series
-WHAT IT IS
-----------
-This is GStreamer, a framework for streaming media.
+The RTP libraries
+---------------------
+RTP Buffers
+-----------
+The real time protocol as described in RFC 3550 requires the use of special
+packets containing an additional RTP header of at least 12 bytes. GStreamer
+provides some helper functions for creating and parsing these RTP headers.
+The result is a normal #GstBuffer with an additional RTP header.
+RTP buffers are usually created with gst_rtp_buffer_new_allocate() or
+gst_rtp_buffer_new_allocate_len(). These functions create buffers with a
+preallocated space of memory. It will also ensure that enough memory
+is allocated for the RTP header. The first function is used when the payload
+size is known. gst_rtp_buffer_new_allocate_len() should be used when the size
+of the whole RTP buffer (RTP header + payload) is known.
+When receiving RTP buffers from a network, gst_rtp_buffer_new_take_data()
+should be used when the user would like to parse that RTP packet. (TODO Ask
+Wim what the real purpose of this function is as it seems to simply create a
+duplicate GstBuffer with the same data as the previous one). The
+function will create a new RTP buffer with the given data as the whole RTP
+packet. Alternatively, gst_rtp_buffer_new_copy_data() can be used if the user
+wishes to make a copy of the data before using it in the new RTP buffer.
+It is now possible to use all the gst_rtp_buffer_get_*() or
+gst_rtp_buffer_set_*() functions to read or write the different parts of the
+RTP header such as the payload type, the sequence number or the RTP
+timestamp. The use can also retrieve a pointer to the actual RTP payload data
+using the gst_rtp_buffer_get_payload() function.
 
 %package bin
 Summary: bin components for the gst-plugins-base package.
@@ -133,13 +154,13 @@ man components for the gst-plugins-base package.
 
 
 %prep
-%setup -q -n gst-plugins-base-1.20.0
-cd %{_builddir}/gst-plugins-base-1.20.0
+%setup -q -n gst-plugins-base-1.20.1
+cd %{_builddir}/gst-plugins-base-1.20.1
 pushd ..
-cp -a gst-plugins-base-1.20.0 buildavx2
+cp -a gst-plugins-base-1.20.1 buildavx2
 popd
 pushd ..
-cp -a gst-plugins-base-1.20.0 buildavx512
+cp -a gst-plugins-base-1.20.1 buildavx512
 popd
 
 %build
@@ -147,7 +168,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1643939962
+export SOURCE_DATE_EPOCH=1647283633
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -175,9 +196,8 @@ meson test -C builddir --print-errorlogs || :
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/gst-plugins-base
-cp %{_builddir}/gst-plugins-base-1.20.0/COPYING %{buildroot}/usr/share/package-licenses/gst-plugins-base/39743f6cf5d70ee54b72485784313148db159a70
-cp %{_builddir}/gst-plugins-base-1.20.0/docs/random/LICENSE %{buildroot}/usr/share/package-licenses/gst-plugins-base/22990b105a08bb838c95fcc4bc5450c6dfdc79ac
-cp %{_builddir}/gst-plugins-base-1.20.0/gst-libs/gst/tag/licenses.c %{buildroot}/usr/share/package-licenses/gst-plugins-base/2d38a685bddde83e2f7aeebcb45bcbe11854b727
+cp %{_builddir}/gst-plugins-base-1.20.1/COPYING %{buildroot}/usr/share/package-licenses/gst-plugins-base/39743f6cf5d70ee54b72485784313148db159a70
+cp %{_builddir}/gst-plugins-base-1.20.1/docs/random/LICENSE %{buildroot}/usr/share/package-licenses/gst-plugins-base/22990b105a08bb838c95fcc4bc5450c6dfdc79ac
 DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
 DESTDIR=%{buildroot}-v4 ninja -C builddiravx512 install
 DESTDIR=%{buildroot} ninja -C builddir install
@@ -476,35 +496,34 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/gstreamer-1.0/libgstximagesink.so
 /usr/lib64/gstreamer-1.0/libgstxvimagesink.so
 /usr/lib64/libgstallocators-1.0.so.0
-/usr/lib64/libgstallocators-1.0.so.0.2000.0
+/usr/lib64/libgstallocators-1.0.so.0.2001.0
 /usr/lib64/libgstapp-1.0.so.0
-/usr/lib64/libgstapp-1.0.so.0.2000.0
+/usr/lib64/libgstapp-1.0.so.0.2001.0
 /usr/lib64/libgstaudio-1.0.so.0
-/usr/lib64/libgstaudio-1.0.so.0.2000.0
+/usr/lib64/libgstaudio-1.0.so.0.2001.0
 /usr/lib64/libgstfft-1.0.so.0
-/usr/lib64/libgstfft-1.0.so.0.2000.0
+/usr/lib64/libgstfft-1.0.so.0.2001.0
 /usr/lib64/libgstgl-1.0.so.0
-/usr/lib64/libgstgl-1.0.so.0.2000.0
+/usr/lib64/libgstgl-1.0.so.0.2001.0
 /usr/lib64/libgstpbutils-1.0.so.0
-/usr/lib64/libgstpbutils-1.0.so.0.2000.0
+/usr/lib64/libgstpbutils-1.0.so.0.2001.0
 /usr/lib64/libgstriff-1.0.so.0
-/usr/lib64/libgstriff-1.0.so.0.2000.0
+/usr/lib64/libgstriff-1.0.so.0.2001.0
 /usr/lib64/libgstrtp-1.0.so.0
-/usr/lib64/libgstrtp-1.0.so.0.2000.0
+/usr/lib64/libgstrtp-1.0.so.0.2001.0
 /usr/lib64/libgstrtsp-1.0.so.0
-/usr/lib64/libgstrtsp-1.0.so.0.2000.0
+/usr/lib64/libgstrtsp-1.0.so.0.2001.0
 /usr/lib64/libgstsdp-1.0.so.0
-/usr/lib64/libgstsdp-1.0.so.0.2000.0
+/usr/lib64/libgstsdp-1.0.so.0.2001.0
 /usr/lib64/libgsttag-1.0.so.0
-/usr/lib64/libgsttag-1.0.so.0.2000.0
+/usr/lib64/libgsttag-1.0.so.0.2001.0
 /usr/lib64/libgstvideo-1.0.so.0
-/usr/lib64/libgstvideo-1.0.so.0.2000.0
+/usr/lib64/libgstvideo-1.0.so.0.2001.0
 /usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/gst-plugins-base/22990b105a08bb838c95fcc4bc5450c6dfdc79ac
-/usr/share/package-licenses/gst-plugins-base/2d38a685bddde83e2f7aeebcb45bcbe11854b727
 /usr/share/package-licenses/gst-plugins-base/39743f6cf5d70ee54b72485784313148db159a70
 
 %files man
