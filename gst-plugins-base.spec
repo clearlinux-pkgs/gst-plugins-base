@@ -6,7 +6,7 @@
 #
 Name     : gst-plugins-base
 Version  : 1.20.3
-Release  : 60
+Release  : 61
 URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.20.3.tar.xz
 Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.20.3.tar.xz
 Source1  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.20.3.tar.xz.asc
@@ -591,6 +591,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/libgsttag-1.0.so.0.2003.0
 /usr/lib64/libgstvideo-1.0.so.0
 /usr/lib64/libgstvideo-1.0.so.0.2003.0
+/usr/share/clear/optimized-elf/other*
 
 %files license
 %defattr(0644,root,root,0755)
