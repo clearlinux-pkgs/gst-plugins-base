@@ -1,7 +1,9 @@
-1.20.5
+1.22.0
 SDL2-dev
 libgudev-dev
 pkgconfig(alsa)
+pkgconfig(gstreamer-1.0)
 pkgconfig(gudev-1.0)
 pkgconfig(theoradec)
+pkgconfig(valgrind)
 pkgconfig(wayland-protocols)

@@ -46,9 +46,8 @@ option('rawparse', type : 'feature', value : 'auto')
 option('subparse', type : 'feature', value : 'auto')
 option('tcp', type : 'feature', value : 'auto')
 option('typefind', type : 'feature', value : 'auto')
-option('videoconvert', type : 'feature', value : 'auto')
+option('videoconvertscale', type : 'feature', value : 'auto')
 option('videorate', type : 'feature', value : 'auto')
-option('videoscale', type : 'feature', value : 'auto')
 option('videotestsrc', type : 'feature', value : 'auto')
 option('volume', type : 'feature', value : 'auto')
 
@@ -65,6 +64,7 @@ option('vorbis', type : 'feature', value : 'auto', description : 'Vorbis audio p
 option('x11', type : 'feature', value : 'auto', description : 'X11 ximagesink plugin, and X11 support in libraries, plugins, examples')
 option('xshm', type : 'feature', value : 'auto', description : 'X11 shared memory support for X11 plugins')
 option('xvideo', type : 'feature', value : 'auto', description : 'X11 XVideo xvimagesink plugin')
+option('xi', type : 'feature', value : 'auto', description : 'X11 input extension for touch support in ximagesink')
 
 # Common feature options
 option('examples', type : 'feature', value : 'auto', yield : true)
