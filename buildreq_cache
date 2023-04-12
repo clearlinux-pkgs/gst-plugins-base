@@ -1,4 +1,4 @@
-1.22.1
+1.22.2
 SDL2-dev
 libgudev-dev
 pkgconfig(alsa)
