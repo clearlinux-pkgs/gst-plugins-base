@@ -7,7 +7,7 @@
 #
 Name     : gst-plugins-base
 Version  : 1.22.2
-Release  : 74
+Release  : 75
 URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.22.2.tar.xz
 Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.22.2.tar.xz
 Source1  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.22.2.tar.xz.asc
@@ -16,7 +16,6 @@ Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: gst-plugins-base-bin = %{version}-%{release}
 Requires: gst-plugins-base-data = %{version}-%{release}
-Requires: gst-plugins-base-filemap = %{version}-%{release}
 Requires: gst-plugins-base-lib = %{version}-%{release}
 Requires: gst-plugins-base-license = %{version}-%{release}
 Requires: gst-plugins-base-locales = %{version}-%{release}
@@ -84,7 +83,6 @@ Summary: bin components for the gst-plugins-base package.
 Group: Binaries
 Requires: gst-plugins-base-data = %{version}-%{release}
 Requires: gst-plugins-base-license = %{version}-%{release}
-Requires: gst-plugins-base-filemap = %{version}-%{release}
 
 %description bin
 bin components for the gst-plugins-base package.
@@ -111,20 +109,11 @@ Requires: gst-plugins-base = %{version}-%{release}
 dev components for the gst-plugins-base package.
 
 
-%package filemap
-Summary: filemap components for the gst-plugins-base package.
-Group: Default
-
-%description filemap
-filemap components for the gst-plugins-base package.
-
-
 %package lib
 Summary: lib components for the gst-plugins-base package.
 Group: Libraries
 Requires: gst-plugins-base-data = %{version}-%{release}
 Requires: gst-plugins-base-license = %{version}-%{release}
-Requires: gst-plugins-base-filemap = %{version}-%{release}
 
 %description lib
 lib components for the gst-plugins-base package.
@@ -169,15 +158,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1681310522
+export SOURCE_DATE_EPOCH=1683127704
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain --wrap-mode=nodownload \
 -Dtheora=enabled  builddir
 ninja -v -C builddir
@@ -211,10 +200,15 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/gst-device-monitor-1.0
+/V3/usr/bin/gst-discoverer-1.0
+/V3/usr/bin/gst-play-1.0
+/V4/usr/bin/gst-device-monitor-1.0
+/V4/usr/bin/gst-discoverer-1.0
+/V4/usr/bin/gst-play-1.0
 /usr/bin/gst-device-monitor-1.0
 /usr/bin/gst-discoverer-1.0
 /usr/bin/gst-play-1.0
-/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -236,6 +230,30 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libgstallocators-1.0.so
+/V3/usr/lib64/libgstapp-1.0.so
+/V3/usr/lib64/libgstaudio-1.0.so
+/V3/usr/lib64/libgstfft-1.0.so
+/V3/usr/lib64/libgstgl-1.0.so
+/V3/usr/lib64/libgstpbutils-1.0.so
+/V3/usr/lib64/libgstriff-1.0.so
+/V3/usr/lib64/libgstrtp-1.0.so
+/V3/usr/lib64/libgstrtsp-1.0.so
+/V3/usr/lib64/libgstsdp-1.0.so
+/V3/usr/lib64/libgsttag-1.0.so
+/V3/usr/lib64/libgstvideo-1.0.so
+/V4/usr/lib64/libgstallocators-1.0.so
+/V4/usr/lib64/libgstapp-1.0.so
+/V4/usr/lib64/libgstaudio-1.0.so
+/V4/usr/lib64/libgstfft-1.0.so
+/V4/usr/lib64/libgstgl-1.0.so
+/V4/usr/lib64/libgstpbutils-1.0.so
+/V4/usr/lib64/libgstriff-1.0.so
+/V4/usr/lib64/libgstrtp-1.0.so
+/V4/usr/lib64/libgstrtsp-1.0.so
+/V4/usr/lib64/libgstsdp-1.0.so
+/V4/usr/lib64/libgsttag-1.0.so
+/V4/usr/lib64/libgstvideo-1.0.so
 /usr/include/gstreamer-1.0/gst/allocators/allocators-prelude.h
 /usr/include/gstreamer-1.0/gst/allocators/allocators.h
 /usr/include/gstreamer-1.0/gst/allocators/gstdmabuf.h
@@ -429,30 +447,6 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/include/gstreamer-1.0/gst/video/videodirection.h
 /usr/include/gstreamer-1.0/gst/video/videoorientation.h
 /usr/include/gstreamer-1.0/gst/video/videooverlay.h
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstallocators-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstapp-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstaudio-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstfft-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstgl-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstpbutils-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstriff-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstrtp-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstrtsp-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstsdp-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgsttag-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstvideo-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstallocators-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstapp-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstaudio-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstfft-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstgl-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstpbutils-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstriff-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstrtp-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstrtsp-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstsdp-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgsttag-1.0.so
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstvideo-1.0.so
 /usr/lib64/gstreamer-1.0/include/gst/gl/gstglconfig.h
 /usr/lib64/libgstallocators-1.0.so
 /usr/lib64/libgstapp-1.0.so
@@ -484,60 +478,116 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/pkgconfig/gstreamer-tag-1.0.pc
 /usr/lib64/pkgconfig/gstreamer-video-1.0.pc
 
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-gst-plugins-base
-
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstallocators-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstallocators-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstapp-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstapp-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstaudio-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstaudio-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstfft-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstfft-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstgl-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstgl-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstpbutils-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstpbutils-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstriff-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstriff-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstrtp-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstrtp-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstrtsp-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstrtsp-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstsdp-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstsdp-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgsttag-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgsttag-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstvideo-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgstvideo-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstallocators-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstallocators-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstapp-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstapp-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstaudio-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstaudio-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstfft-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstfft-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstgl-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstgl-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstpbutils-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstpbutils-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstriff-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstriff-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstrtp-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstrtp-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstrtsp-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstrtsp-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstsdp-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstsdp-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgsttag-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgsttag-1.0.so.0.2202.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstvideo-1.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v4/libgstvideo-1.0.so.0.2202.0
+/V3/usr/lib64/gstreamer-1.0/libgstadder.so
+/V3/usr/lib64/gstreamer-1.0/libgstalsa.so
+/V3/usr/lib64/gstreamer-1.0/libgstapp.so
+/V3/usr/lib64/gstreamer-1.0/libgstaudioconvert.so
+/V3/usr/lib64/gstreamer-1.0/libgstaudiomixer.so
+/V3/usr/lib64/gstreamer-1.0/libgstaudiorate.so
+/V3/usr/lib64/gstreamer-1.0/libgstaudioresample.so
+/V3/usr/lib64/gstreamer-1.0/libgstaudiotestsrc.so
+/V3/usr/lib64/gstreamer-1.0/libgstcompositor.so
+/V3/usr/lib64/gstreamer-1.0/libgstencoding.so
+/V3/usr/lib64/gstreamer-1.0/libgstgio.so
+/V3/usr/lib64/gstreamer-1.0/libgstogg.so
+/V3/usr/lib64/gstreamer-1.0/libgstopengl.so
+/V3/usr/lib64/gstreamer-1.0/libgstopus.so
+/V3/usr/lib64/gstreamer-1.0/libgstoverlaycomposition.so
+/V3/usr/lib64/gstreamer-1.0/libgstpango.so
+/V3/usr/lib64/gstreamer-1.0/libgstpbtypes.so
+/V3/usr/lib64/gstreamer-1.0/libgstplayback.so
+/V3/usr/lib64/gstreamer-1.0/libgstrawparse.so
+/V3/usr/lib64/gstreamer-1.0/libgstsubparse.so
+/V3/usr/lib64/gstreamer-1.0/libgsttcp.so
+/V3/usr/lib64/gstreamer-1.0/libgsttheora.so
+/V3/usr/lib64/gstreamer-1.0/libgsttypefindfunctions.so
+/V3/usr/lib64/gstreamer-1.0/libgstvideoconvertscale.so
+/V3/usr/lib64/gstreamer-1.0/libgstvideorate.so
+/V3/usr/lib64/gstreamer-1.0/libgstvideotestsrc.so
+/V3/usr/lib64/gstreamer-1.0/libgstvolume.so
+/V3/usr/lib64/gstreamer-1.0/libgstvorbis.so
+/V3/usr/lib64/gstreamer-1.0/libgstximagesink.so
+/V3/usr/lib64/gstreamer-1.0/libgstxvimagesink.so
+/V3/usr/lib64/libgstallocators-1.0.so.0
+/V3/usr/lib64/libgstallocators-1.0.so.0.2202.0
+/V3/usr/lib64/libgstapp-1.0.so.0
+/V3/usr/lib64/libgstapp-1.0.so.0.2202.0
+/V3/usr/lib64/libgstaudio-1.0.so.0
+/V3/usr/lib64/libgstaudio-1.0.so.0.2202.0
+/V3/usr/lib64/libgstfft-1.0.so.0
+/V3/usr/lib64/libgstfft-1.0.so.0.2202.0
+/V3/usr/lib64/libgstgl-1.0.so.0
+/V3/usr/lib64/libgstgl-1.0.so.0.2202.0
+/V3/usr/lib64/libgstpbutils-1.0.so.0
+/V3/usr/lib64/libgstpbutils-1.0.so.0.2202.0
+/V3/usr/lib64/libgstriff-1.0.so.0
+/V3/usr/lib64/libgstriff-1.0.so.0.2202.0
+/V3/usr/lib64/libgstrtp-1.0.so.0
+/V3/usr/lib64/libgstrtp-1.0.so.0.2202.0
+/V3/usr/lib64/libgstrtsp-1.0.so.0
+/V3/usr/lib64/libgstrtsp-1.0.so.0.2202.0
+/V3/usr/lib64/libgstsdp-1.0.so.0
+/V3/usr/lib64/libgstsdp-1.0.so.0.2202.0
+/V3/usr/lib64/libgsttag-1.0.so.0
+/V3/usr/lib64/libgsttag-1.0.so.0.2202.0
+/V3/usr/lib64/libgstvideo-1.0.so.0
+/V3/usr/lib64/libgstvideo-1.0.so.0.2202.0
+/V4/usr/lib64/gstreamer-1.0/libgstadder.so
+/V4/usr/lib64/gstreamer-1.0/libgstalsa.so
+/V4/usr/lib64/gstreamer-1.0/libgstapp.so
+/V4/usr/lib64/gstreamer-1.0/libgstaudioconvert.so
+/V4/usr/lib64/gstreamer-1.0/libgstaudiomixer.so
+/V4/usr/lib64/gstreamer-1.0/libgstaudiorate.so
+/V4/usr/lib64/gstreamer-1.0/libgstaudioresample.so
+/V4/usr/lib64/gstreamer-1.0/libgstaudiotestsrc.so
+/V4/usr/lib64/gstreamer-1.0/libgstcompositor.so
+/V4/usr/lib64/gstreamer-1.0/libgstencoding.so
+/V4/usr/lib64/gstreamer-1.0/libgstgio.so
+/V4/usr/lib64/gstreamer-1.0/libgstogg.so
+/V4/usr/lib64/gstreamer-1.0/libgstopengl.so
+/V4/usr/lib64/gstreamer-1.0/libgstopus.so
+/V4/usr/lib64/gstreamer-1.0/libgstoverlaycomposition.so
+/V4/usr/lib64/gstreamer-1.0/libgstpango.so
+/V4/usr/lib64/gstreamer-1.0/libgstpbtypes.so
+/V4/usr/lib64/gstreamer-1.0/libgstplayback.so
+/V4/usr/lib64/gstreamer-1.0/libgstrawparse.so
+/V4/usr/lib64/gstreamer-1.0/libgstsubparse.so
+/V4/usr/lib64/gstreamer-1.0/libgsttcp.so
+/V4/usr/lib64/gstreamer-1.0/libgsttheora.so
+/V4/usr/lib64/gstreamer-1.0/libgsttypefindfunctions.so
+/V4/usr/lib64/gstreamer-1.0/libgstvideoconvertscale.so
+/V4/usr/lib64/gstreamer-1.0/libgstvideorate.so
+/V4/usr/lib64/gstreamer-1.0/libgstvideotestsrc.so
+/V4/usr/lib64/gstreamer-1.0/libgstvolume.so
+/V4/usr/lib64/gstreamer-1.0/libgstvorbis.so
+/V4/usr/lib64/gstreamer-1.0/libgstximagesink.so
+/V4/usr/lib64/gstreamer-1.0/libgstxvimagesink.so
+/V4/usr/lib64/libgstallocators-1.0.so.0
+/V4/usr/lib64/libgstallocators-1.0.so.0.2202.0
+/V4/usr/lib64/libgstapp-1.0.so.0
+/V4/usr/lib64/libgstapp-1.0.so.0.2202.0
+/V4/usr/lib64/libgstaudio-1.0.so.0
+/V4/usr/lib64/libgstaudio-1.0.so.0.2202.0
+/V4/usr/lib64/libgstfft-1.0.so.0
+/V4/usr/lib64/libgstfft-1.0.so.0.2202.0
+/V4/usr/lib64/libgstgl-1.0.so.0
+/V4/usr/lib64/libgstgl-1.0.so.0.2202.0
+/V4/usr/lib64/libgstpbutils-1.0.so.0
+/V4/usr/lib64/libgstpbutils-1.0.so.0.2202.0
+/V4/usr/lib64/libgstriff-1.0.so.0
+/V4/usr/lib64/libgstriff-1.0.so.0.2202.0
+/V4/usr/lib64/libgstrtp-1.0.so.0
+/V4/usr/lib64/libgstrtp-1.0.so.0.2202.0
+/V4/usr/lib64/libgstrtsp-1.0.so.0
+/V4/usr/lib64/libgstrtsp-1.0.so.0.2202.0
+/V4/usr/lib64/libgstsdp-1.0.so.0
+/V4/usr/lib64/libgstsdp-1.0.so.0.2202.0
+/V4/usr/lib64/libgsttag-1.0.so.0
+/V4/usr/lib64/libgsttag-1.0.so.0.2202.0
+/V4/usr/lib64/libgstvideo-1.0.so.0
+/V4/usr/lib64/libgstvideo-1.0.so.0.2202.0
 /usr/lib64/gstreamer-1.0/libgstadder.so
 /usr/lib64/gstreamer-1.0/libgstalsa.so
 /usr/lib64/gstreamer-1.0/libgstapp.so
@@ -592,7 +642,6 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/libgsttag-1.0.so.0.2202.0
 /usr/lib64/libgstvideo-1.0.so.0
 /usr/lib64/libgstvideo-1.0.so.0.2202.0
-/usr/share/clear/optimized-elf/other*
 
 %files license
 %defattr(0644,root,root,0755)
