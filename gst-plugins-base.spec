@@ -8,11 +8,11 @@
 # Source0 file verified with key 0x5D2EEE6F6F349D7C (tim@centricular.com)
 #
 Name     : gst-plugins-base
-Version  : 1.22.7
-Release  : 82
-URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.22.7.tar.xz
-Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.22.7.tar.xz
-Source1  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.22.7.tar.xz.asc
+Version  : 1.22.8
+Release  : 83
+URL      : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.22.8.tar.xz
+Source0  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.22.8.tar.xz
+Source1  : https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.22.8.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -146,13 +146,13 @@ man components for the gst-plugins-base package.
 
 
 %prep
-%setup -q -n gst-plugins-base-1.22.7
-cd %{_builddir}/gst-plugins-base-1.22.7
+%setup -q -n gst-plugins-base-1.22.8
+cd %{_builddir}/gst-plugins-base-1.22.8
 pushd ..
-cp -a gst-plugins-base-1.22.7 buildavx2
+cp -a gst-plugins-base-1.22.8 buildavx2
 popd
 pushd ..
-cp -a gst-plugins-base-1.22.7 buildavx512
+cp -a gst-plugins-base-1.22.8 buildavx512
 popd
 
 %build
@@ -160,7 +160,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1701965307
+export SOURCE_DATE_EPOCH=1702917733
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -508,18 +508,18 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /V3/usr/lib64/gstreamer-1.0/libgstvorbis.so
 /V3/usr/lib64/gstreamer-1.0/libgstximagesink.so
 /V3/usr/lib64/gstreamer-1.0/libgstxvimagesink.so
-/V3/usr/lib64/libgstallocators-1.0.so.0.2207.0
-/V3/usr/lib64/libgstapp-1.0.so.0.2207.0
-/V3/usr/lib64/libgstaudio-1.0.so.0.2207.0
-/V3/usr/lib64/libgstfft-1.0.so.0.2207.0
-/V3/usr/lib64/libgstgl-1.0.so.0.2207.0
-/V3/usr/lib64/libgstpbutils-1.0.so.0.2207.0
-/V3/usr/lib64/libgstriff-1.0.so.0.2207.0
-/V3/usr/lib64/libgstrtp-1.0.so.0.2207.0
-/V3/usr/lib64/libgstrtsp-1.0.so.0.2207.0
-/V3/usr/lib64/libgstsdp-1.0.so.0.2207.0
-/V3/usr/lib64/libgsttag-1.0.so.0.2207.0
-/V3/usr/lib64/libgstvideo-1.0.so.0.2207.0
+/V3/usr/lib64/libgstallocators-1.0.so.0.2208.0
+/V3/usr/lib64/libgstapp-1.0.so.0.2208.0
+/V3/usr/lib64/libgstaudio-1.0.so.0.2208.0
+/V3/usr/lib64/libgstfft-1.0.so.0.2208.0
+/V3/usr/lib64/libgstgl-1.0.so.0.2208.0
+/V3/usr/lib64/libgstpbutils-1.0.so.0.2208.0
+/V3/usr/lib64/libgstriff-1.0.so.0.2208.0
+/V3/usr/lib64/libgstrtp-1.0.so.0.2208.0
+/V3/usr/lib64/libgstrtsp-1.0.so.0.2208.0
+/V3/usr/lib64/libgstsdp-1.0.so.0.2208.0
+/V3/usr/lib64/libgsttag-1.0.so.0.2208.0
+/V3/usr/lib64/libgstvideo-1.0.so.0.2208.0
 /V4/usr/lib64/gstreamer-1.0/libgstadder.so
 /V4/usr/lib64/gstreamer-1.0/libgstalsa.so
 /V4/usr/lib64/gstreamer-1.0/libgstapp.so
@@ -550,18 +550,18 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /V4/usr/lib64/gstreamer-1.0/libgstvorbis.so
 /V4/usr/lib64/gstreamer-1.0/libgstximagesink.so
 /V4/usr/lib64/gstreamer-1.0/libgstxvimagesink.so
-/V4/usr/lib64/libgstallocators-1.0.so.0.2207.0
-/V4/usr/lib64/libgstapp-1.0.so.0.2207.0
-/V4/usr/lib64/libgstaudio-1.0.so.0.2207.0
-/V4/usr/lib64/libgstfft-1.0.so.0.2207.0
-/V4/usr/lib64/libgstgl-1.0.so.0.2207.0
-/V4/usr/lib64/libgstpbutils-1.0.so.0.2207.0
-/V4/usr/lib64/libgstriff-1.0.so.0.2207.0
-/V4/usr/lib64/libgstrtp-1.0.so.0.2207.0
-/V4/usr/lib64/libgstrtsp-1.0.so.0.2207.0
-/V4/usr/lib64/libgstsdp-1.0.so.0.2207.0
-/V4/usr/lib64/libgsttag-1.0.so.0.2207.0
-/V4/usr/lib64/libgstvideo-1.0.so.0.2207.0
+/V4/usr/lib64/libgstallocators-1.0.so.0.2208.0
+/V4/usr/lib64/libgstapp-1.0.so.0.2208.0
+/V4/usr/lib64/libgstaudio-1.0.so.0.2208.0
+/V4/usr/lib64/libgstfft-1.0.so.0.2208.0
+/V4/usr/lib64/libgstgl-1.0.so.0.2208.0
+/V4/usr/lib64/libgstpbutils-1.0.so.0.2208.0
+/V4/usr/lib64/libgstriff-1.0.so.0.2208.0
+/V4/usr/lib64/libgstrtp-1.0.so.0.2208.0
+/V4/usr/lib64/libgstrtsp-1.0.so.0.2208.0
+/V4/usr/lib64/libgstsdp-1.0.so.0.2208.0
+/V4/usr/lib64/libgsttag-1.0.so.0.2208.0
+/V4/usr/lib64/libgstvideo-1.0.so.0.2208.0
 /usr/lib64/gstreamer-1.0/libgstadder.so
 /usr/lib64/gstreamer-1.0/libgstalsa.so
 /usr/lib64/gstreamer-1.0/libgstapp.so
@@ -593,29 +593,29 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/gstreamer-1.0/libgstximagesink.so
 /usr/lib64/gstreamer-1.0/libgstxvimagesink.so
 /usr/lib64/libgstallocators-1.0.so.0
-/usr/lib64/libgstallocators-1.0.so.0.2207.0
+/usr/lib64/libgstallocators-1.0.so.0.2208.0
 /usr/lib64/libgstapp-1.0.so.0
-/usr/lib64/libgstapp-1.0.so.0.2207.0
+/usr/lib64/libgstapp-1.0.so.0.2208.0
 /usr/lib64/libgstaudio-1.0.so.0
-/usr/lib64/libgstaudio-1.0.so.0.2207.0
+/usr/lib64/libgstaudio-1.0.so.0.2208.0
 /usr/lib64/libgstfft-1.0.so.0
-/usr/lib64/libgstfft-1.0.so.0.2207.0
+/usr/lib64/libgstfft-1.0.so.0.2208.0
 /usr/lib64/libgstgl-1.0.so.0
-/usr/lib64/libgstgl-1.0.so.0.2207.0
+/usr/lib64/libgstgl-1.0.so.0.2208.0
 /usr/lib64/libgstpbutils-1.0.so.0
-/usr/lib64/libgstpbutils-1.0.so.0.2207.0
+/usr/lib64/libgstpbutils-1.0.so.0.2208.0
 /usr/lib64/libgstriff-1.0.so.0
-/usr/lib64/libgstriff-1.0.so.0.2207.0
+/usr/lib64/libgstriff-1.0.so.0.2208.0
 /usr/lib64/libgstrtp-1.0.so.0
-/usr/lib64/libgstrtp-1.0.so.0.2207.0
+/usr/lib64/libgstrtp-1.0.so.0.2208.0
 /usr/lib64/libgstrtsp-1.0.so.0
-/usr/lib64/libgstrtsp-1.0.so.0.2207.0
+/usr/lib64/libgstrtsp-1.0.so.0.2208.0
 /usr/lib64/libgstsdp-1.0.so.0
-/usr/lib64/libgstsdp-1.0.so.0.2207.0
+/usr/lib64/libgstsdp-1.0.so.0.2208.0
 /usr/lib64/libgsttag-1.0.so.0
-/usr/lib64/libgsttag-1.0.so.0.2207.0
+/usr/lib64/libgsttag-1.0.so.0.2208.0
 /usr/lib64/libgstvideo-1.0.so.0
-/usr/lib64/libgstvideo-1.0.so.0.2207.0
+/usr/lib64/libgstvideo-1.0.so.0.2208.0
 
 %files license
 %defattr(0644,root,root,0755)
