@@ -1,7 +1,8 @@
-1.22.10
+1.24.0
 SDL2-dev
 libgudev-dev
 pkgconfig(alsa)
+pkgconfig(gstreamer-1.0)
 pkgconfig(gudev-1.0)
 pkgconfig(theoradec)
 pkgconfig(valgrind)
