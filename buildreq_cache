@@ -1,4 +1,4 @@
-1.24.1
+1.24.2
 SDL2-dev
 libgudev-dev
 pkgconfig(alsa)
@@ -6,3 +6,4 @@ pkgconfig(gudev-1.0)
 pkgconfig(theoradec)
 pkgconfig(valgrind)
 pkgconfig(wayland-protocols)
+qt6tools-dev
