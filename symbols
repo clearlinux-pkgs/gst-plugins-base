@@ -260,6 +260,7 @@ libgstaudio-1.0.so.0:gst_audio_quantize_new
 libgstaudio-1.0.so.0:gst_audio_quantize_reset
 libgstaudio-1.0.so.0:gst_audio_quantize_samples
 libgstaudio-1.0.so.0:gst_audio_reorder_channels
+libgstaudio-1.0.so.0:gst_audio_reorder_channels_with_reorder_map
 libgstaudio-1.0.so.0:gst_audio_resampler_filter_interpolation_get_type
 libgstaudio-1.0.so.0:gst_audio_resampler_filter_mode_get_type
 libgstaudio-1.0.so.0:gst_audio_resampler_flags_get_type
@@ -286,6 +287,8 @@ libgstaudio-1.0.so.0:gst_audio_ring_buffer_debug_spec_caps
 libgstaudio-1.0.so.0:gst_audio_ring_buffer_delay
 libgstaudio-1.0.so.0:gst_audio_ring_buffer_device_is_open
 libgstaudio-1.0.so.0:gst_audio_ring_buffer_format_type_get_type
+libgstaudio-1.0.so.0:gst_audio_ring_buffer_get_segbase
+libgstaudio-1.0.so.0:gst_audio_ring_buffer_get_segdone
 libgstaudio-1.0.so.0:gst_audio_ring_buffer_get_type
 libgstaudio-1.0.so.0:gst_audio_ring_buffer_is_acquired
 libgstaudio-1.0.so.0:gst_audio_ring_buffer_is_active
@@ -304,6 +307,7 @@ libgstaudio-1.0.so.0:gst_audio_ring_buffer_set_channel_positions
 libgstaudio-1.0.so.0:gst_audio_ring_buffer_set_errored
 libgstaudio-1.0.so.0:gst_audio_ring_buffer_set_flushing
 libgstaudio-1.0.so.0:gst_audio_ring_buffer_set_sample
+libgstaudio-1.0.so.0:gst_audio_ring_buffer_set_segdone
 libgstaudio-1.0.so.0:gst_audio_ring_buffer_set_timestamp
 libgstaudio-1.0.so.0:gst_audio_ring_buffer_start
 libgstaudio-1.0.so.0:gst_audio_ring_buffer_state_get_type
@@ -384,6 +388,12 @@ libgstgl-1.0.so.0:gst_buffer_pool_config_set_gl_min_free_queue_size
 libgstgl-1.0.so.0:gst_context_get_gl_display
 libgstgl-1.0.so.0:gst_context_set_gl_display
 libgstgl-1.0.so.0:gst_egl_get_error_string
+libgstgl-1.0.so.0:gst_egl_image_cache_lookup
+libgstgl-1.0.so.0:gst_egl_image_cache_new
+libgstgl-1.0.so.0:gst_egl_image_cache_ref
+libgstgl-1.0.so.0:gst_egl_image_cache_store
+libgstgl-1.0.so.0:gst_egl_image_cache_unref
+libgstgl-1.0.so.0:gst_egl_image_can_emulate
 libgstgl-1.0.so.0:gst_egl_image_export_dmabuf
 libgstgl-1.0.so.0:gst_egl_image_from_dmabuf
 libgstgl-1.0.so.0:gst_egl_image_from_dmabuf_direct
@@ -501,6 +511,7 @@ libgstgl-1.0.so.0:gst_gl_display_egl_get_type
 libgstgl-1.0.so.0:gst_gl_display_egl_new
 libgstgl-1.0.so.0:gst_gl_display_egl_new_surfaceless
 libgstgl-1.0.so.0:gst_gl_display_egl_new_with_egl_display
+libgstgl-1.0.so.0:gst_gl_display_egl_set_foreign
 libgstgl-1.0.so.0:gst_gl_display_ensure_context
 libgstgl-1.0.so.0:gst_gl_display_filter_gl_api
 libgstgl-1.0.so.0:gst_gl_display_find_window
@@ -522,6 +533,9 @@ libgstgl-1.0.so.0:gst_gl_display_wayland_new_with_display
 libgstgl-1.0.so.0:gst_gl_display_x11_get_type
 libgstgl-1.0.so.0:gst_gl_display_x11_new
 libgstgl-1.0.so.0:gst_gl_display_x11_new_with_display
+libgstgl-1.0.so.0:gst_gl_dma_buf_transform_drm_formats_to_gst_formats
+libgstgl-1.0.so.0:gst_gl_dma_buf_transform_gst_formats_to_drm_formats
+libgstgl-1.0.so.0:gst_gl_drm_format_flags_get_type
 libgstgl-1.0.so.0:gst_gl_element_propagate_display_context
 libgstgl-1.0.so.0:gst_gl_ensure_element_data
 libgstgl-1.0.so.0:gst_gl_filter_add_rgba_pad_templates
@@ -774,6 +788,10 @@ libgstpbutils-1.0.so.0:gst_codec_utils_aac_get_level
 libgstpbutils-1.0.so.0:gst_codec_utils_aac_get_profile
 libgstpbutils-1.0.so.0:gst_codec_utils_aac_get_sample_rate
 libgstpbutils-1.0.so.0:gst_codec_utils_aac_get_sample_rate_from_index
+libgstpbutils-1.0.so.0:gst_codec_utils_av1_create_av1c_from_caps
+libgstpbutils-1.0.so.0:gst_codec_utils_av1_create_caps_from_av1c
+libgstpbutils-1.0.so.0:gst_codec_utils_av1_get_level
+libgstpbutils-1.0.so.0:gst_codec_utils_av1_get_seq_level_idx
 libgstpbutils-1.0.so.0:gst_codec_utils_caps_from_mime_codec
 libgstpbutils-1.0.so.0:gst_codec_utils_caps_get_mime_codec
 libgstpbutils-1.0.so.0:gst_codec_utils_h264_caps_set_level_and_profile
@@ -786,6 +804,11 @@ libgstpbutils-1.0.so.0:gst_codec_utils_h265_get_level
 libgstpbutils-1.0.so.0:gst_codec_utils_h265_get_level_idc
 libgstpbutils-1.0.so.0:gst_codec_utils_h265_get_profile
 libgstpbutils-1.0.so.0:gst_codec_utils_h265_get_tier
+libgstpbutils-1.0.so.0:gst_codec_utils_h266_caps_set_level_tier_and_profile
+libgstpbutils-1.0.so.0:gst_codec_utils_h266_get_level
+libgstpbutils-1.0.so.0:gst_codec_utils_h266_get_level_idc
+libgstpbutils-1.0.so.0:gst_codec_utils_h266_get_profile
+libgstpbutils-1.0.so.0:gst_codec_utils_h266_get_tier
 libgstpbutils-1.0.so.0:gst_codec_utils_mpeg4video_caps_set_level_and_profile
 libgstpbutils-1.0.so.0:gst_codec_utils_mpeg4video_get_level
 libgstpbutils-1.0.so.0:gst_codec_utils_mpeg4video_get_profile
@@ -870,6 +893,7 @@ libgstpbutils-1.0.so.0:gst_encoding_list_available_categories
 libgstpbutils-1.0.so.0:gst_encoding_profile_copy
 libgstpbutils-1.0.so.0:gst_encoding_profile_find
 libgstpbutils-1.0.so.0:gst_encoding_profile_from_discoverer
+libgstpbutils-1.0.so.0:gst_encoding_profile_from_string
 libgstpbutils-1.0.so.0:gst_encoding_profile_get_allow_dynamic_output
 libgstpbutils-1.0.so.0:gst_encoding_profile_get_description
 libgstpbutils-1.0.so.0:gst_encoding_profile_get_element_properties
@@ -897,6 +921,7 @@ libgstpbutils-1.0.so.0:gst_encoding_profile_set_preset
 libgstpbutils-1.0.so.0:gst_encoding_profile_set_preset_name
 libgstpbutils-1.0.so.0:gst_encoding_profile_set_restriction
 libgstpbutils-1.0.so.0:gst_encoding_profile_set_single_segment
+libgstpbutils-1.0.so.0:gst_encoding_profile_to_string
 libgstpbutils-1.0.so.0:gst_encoding_target_add_profile
 libgstpbutils-1.0.so.0:gst_encoding_target_get_category
 libgstpbutils-1.0.so.0:gst_encoding_target_get_description
@@ -939,6 +964,8 @@ libgstpbutils-1.0.so.0:gst_missing_encoder_installer_detail_new
 libgstpbutils-1.0.so.0:gst_missing_encoder_message_new
 libgstpbutils-1.0.so.0:gst_missing_plugin_message_get_description
 libgstpbutils-1.0.so.0:gst_missing_plugin_message_get_installer_detail
+libgstpbutils-1.0.so.0:gst_missing_plugin_message_get_stream_id
+libgstpbutils-1.0.so.0:gst_missing_plugin_message_set_stream_id
 libgstpbutils-1.0.so.0:gst_missing_uri_sink_installer_detail_new
 libgstpbutils-1.0.so.0:gst_missing_uri_sink_message_new
 libgstpbutils-1.0.so.0:gst_missing_uri_source_installer_detail_new
@@ -1622,6 +1649,7 @@ libgstvideo-1.0.so.0:gst_navigation_event_new_key_press
 libgstvideo-1.0.so.0:gst_navigation_event_new_key_release
 libgstvideo-1.0.so.0:gst_navigation_event_new_mouse_button_press
 libgstvideo-1.0.so.0:gst_navigation_event_new_mouse_button_release
+libgstvideo-1.0.so.0:gst_navigation_event_new_mouse_double_click
 libgstvideo-1.0.so.0:gst_navigation_event_new_mouse_move
 libgstvideo-1.0.so.0:gst_navigation_event_new_mouse_scroll
 libgstvideo-1.0.so.0:gst_navigation_event_new_touch_cancel
@@ -1812,12 +1840,15 @@ libgstvideo-1.0.so.0:gst_video_dither_free
 libgstvideo-1.0.so.0:gst_video_dither_line
 libgstvideo-1.0.so.0:gst_video_dither_method_get_type
 libgstvideo-1.0.so.0:gst_video_dither_new
+libgstvideo-1.0.so.0:gst_video_dma_drm_format_from_gst_format
+libgstvideo-1.0.so.0:gst_video_dma_drm_format_to_gst_format
 libgstvideo-1.0.so.0:gst_video_dma_drm_fourcc_from_format
 libgstvideo-1.0.so.0:gst_video_dma_drm_fourcc_from_string
 libgstvideo-1.0.so.0:gst_video_dma_drm_fourcc_to_format
 libgstvideo-1.0.so.0:gst_video_dma_drm_fourcc_to_string
 libgstvideo-1.0.so.0:gst_video_encoder_allocate_output_buffer
 libgstvideo-1.0.so.0:gst_video_encoder_allocate_output_frame
+libgstvideo-1.0.so.0:gst_video_encoder_drop_frame
 libgstvideo-1.0.so.0:gst_video_encoder_finish_frame
 libgstvideo-1.0.so.0:gst_video_encoder_finish_subframe
 libgstvideo-1.0.so.0:gst_video_encoder_get_allocator
@@ -1833,6 +1864,7 @@ libgstvideo-1.0.so.0:gst_video_encoder_is_qos_enabled
 libgstvideo-1.0.so.0:gst_video_encoder_merge_tags
 libgstvideo-1.0.so.0:gst_video_encoder_negotiate
 libgstvideo-1.0.so.0:gst_video_encoder_proxy_getcaps
+libgstvideo-1.0.so.0:gst_video_encoder_release_frame
 libgstvideo-1.0.so.0:gst_video_encoder_set_headers
 libgstvideo-1.0.so.0:gst_video_encoder_set_latency
 libgstvideo-1.0.so.0:gst_video_encoder_set_min_force_key_unit_interval
